@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,22 +8,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavigationComponent {
 
+  @Input() userExists: boolean = false;
+
   get isLogged() {
     return this.userService.isLogged;
   }
 
   constructor(private userService: UserService) {}
 
-  loginHandler(): void {
-    this.userService.login();
-  }
-
   logoutHandler(): void {
     this.userService.logout();
   }
-
-  registerHandler(): void {
-    this.userService.register();
-  }
-
 }

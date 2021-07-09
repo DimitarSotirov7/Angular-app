@@ -12,24 +12,27 @@ export class UserService {
   constructor(private storageService: StorageService, private firebase: FirebaseService) {
   }
 
-  login(): void {
-    this.firebase.login('demo@demo.com', 'demo123');
-    if (this.firebase.isLogged) { 
+  login(email: string, password: string): void {
+    if (email === '' || password === '') {
+      return;
+    }
+    this.firebase.login(email, password);
+    if (this.isLogged) { 
       this.storageService.setItem('isLogged', true); 
     }
   }
 
   logout(): void {
     this.firebase.logout();
-    if (!this.firebase.isLogged) {
+    if (!this.isLogged) {
     this.storageService.setItem('isLogged', false);
     }
   }
 
-  register(): void {
-    this.firebase.register('test@test.com', 'test123');
-    if (this.firebase.isLogged) {
-    this.storageService.setItem('isLogged', true);
+  register(email: string, password: string): void {
+    if (email === '' || password === '') {
+      return;
     }
+    this.firebase.register(email, password);
   }
 }

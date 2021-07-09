@@ -1,0 +1,44 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { CoreModule } from './core/core.module';
+import { UserService } from './services/user.service';
+import { UserModule } from './user/user.module';
+import { StorageService } from './services/storage.service';
+import { UserRoutingModule } from './user/user-routing.module';
+import { environment } from 'src/environments/environment.prod';
+import { FirebaseService } from './services/firebase.service';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AboutComponent
+  ],
+  imports: [
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    HttpClientModule,
+    AppRoutingModule,
+    UserRoutingModule,
+    SharedModule,
+    CoreModule,
+    UserModule
+  ],
+  providers: [
+    UserService,
+    StorageService,
+    FirebaseService
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

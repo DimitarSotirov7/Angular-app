@@ -1,0 +1,15 @@
+<nav class="nav width-wrapper">
+    <div class="logo" routerLink="/">
+        <img src="../../../assets/logo-2.png" alt="logo">
+    </div>
+    <div class="nav-items">
+        <a routerLink="/">Home</a>
+        <a routerLink="/about">About</a>
+        <a *ngIf="!isLogged" (click)="loginHandler()">Login</a>
+        <a *ngIf="!isLogged" (click)="registerHandler()">Register</a>
+    </div>
+    <div *ngIf="isLogged" class="profile">
+        <a routerLink="/">DS</a>
+        <a (click)="logoutHandler()">Logout</a>
+    </div>
+</nav>

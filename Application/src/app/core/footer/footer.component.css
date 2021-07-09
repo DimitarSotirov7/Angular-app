@@ -1,0 +1,44 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer .logo{
+    width: 100px;
+    margin: 5px;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.logo img{
+    width: 100%;
+    padding-top: 6px;
+    max-height: 100%;
+}
+
+
+.footer .footer-items {
+    display: flex;
+    padding-top: 10px;
+}
+
+.footer .footer-items a {
+    padding-top: 7px;
+    list-style: none;
+    margin: 0 8px;
+    text-decoration: none;
+    color: black;
+}
+
+.footer .footer-items a:hover {
+    border-top: 4px solid rgb(83, 186, 255);
+    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+    top: 50%;
+    cursor: pointer;
+  }

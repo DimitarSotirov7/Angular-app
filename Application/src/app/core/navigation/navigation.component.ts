@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,13 +10,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavigationComponent {
 
-  @Input() userExists: boolean = false;
+  subsciptions: Subscription[] = [];
+  isLogged = false;
 
-  get isLogged() {
-    return this.userService.isLogged;
+  constructor(private userService: UserService, route: ActivatedRoute) {
+    this.subsciptions.push(this.userService.logged.subscribe((isLogged) => {
+      this.isLogged = isLogged;
+      console.log('logged')
+    }))
   }
-
-  constructor(private userService: UserService) {}
 
   logoutHandler(): void {
     this.userService.logout();

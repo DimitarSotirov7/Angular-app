@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { IFormValues } from '../interfaces/iform-values';
 
 @Injectable()
 export class FirebaseService {
@@ -8,20 +9,12 @@ export class FirebaseService {
 
   constructor(private fireAuth: AngularFireAuth) { }
 
-  async login(email: string, password: string) {
-    await this.fireAuth.signInWithEmailAndPassword(email, password).then(res => {
-      this.isLogged = true;
-    }).catch(err => {
-      console.log(err.message);
-    });
+  login(formValues: IFormValues):Promise<any> {
+    return this.fireAuth.signInWithEmailAndPassword(formValues.email, formValues.password);
   }
 
-  async register(email: string, password: string) {
-    await this.fireAuth.createUserWithEmailAndPassword(email, password).then(res => {
-      this.isLogged = true;
-    }).catch(err => {
-      console.log(err.message);
-    });
+  register(formValues: IFormValues):Promise<any> {
+    return this.fireAuth.createUserWithEmailAndPassword(formValues.email, formValues.password);
   }
 
   async logout() {

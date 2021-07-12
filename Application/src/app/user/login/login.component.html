@@ -1,0 +1,22 @@
+<div class="login">
+    <h1>Login to Web App</h1>
+    <form #f="ngForm" (ngSubmit)="login(f.value)">
+        <p><input #emailInput="ngModel" type="text" name="email" placeholder="Email" ngModel required email></p>
+        <div class="validation" *ngIf="emailInput.errors?.required && emailInput.touched">Email is required!</div>
+        <div class="validation" *ngIf="emailInput.errors?.email && emailInput.touched">Email is invalid!</div>
+        <p><input #passwordInput="ngModel" type="password" name="password" placeholder="Password" ngModel required minlength="6"></p>
+        <div class="validation" *ngIf="passwordInput.errors?.required && passwordInput.touched">Password is required!</div>
+        <div class="validation" *ngIf="passwordInput.errors?.minlength && passwordInput.touched">Password must contain at least 6 characters!</div>
+        <p class="remember-me">
+            <label>
+                <input type="checkbox" name="remember-me" ngModel>
+                Remember me on this computer
+            </label>
+        </p>
+        <p><button [disabled]="f.invalid">Login</button></p>
+    </form>
+</div>
+
+<div class="login-help">
+    <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+</div>

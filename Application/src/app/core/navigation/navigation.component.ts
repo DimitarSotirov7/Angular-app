@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,16 +8,23 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit{
 
   subsciptions: Subscription[] = [];
-  isLogged = false;
+  isLogged = this.userService.isLogged;
+  uid: string = '';
 
-  constructor(private userService: UserService, route: ActivatedRoute) {
-    this.subsciptions.push(this.userService.logged.subscribe((isLogged) => {
+  constructor(private userService: UserService, route: Router) {
+    this.subsciptions.push(this.userService.logged.subscribe(isLogged => {
       this.isLogged = isLogged;
-      console.log('logged')
+      route.navigateByUrl('');
     }))
+  }
+
+  ngOnInit(): void {
+    this.userService.authState.subscribe(user => {
+      this.uid = user?.uid;
+    });
   }
 
   logoutHandler(): void {

@@ -1,4 +1,5 @@
 import { Component, Output } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { IFormValues } from 'src/app/interfaces/iform-values';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,7 +10,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent {
   
-  constructor(private userService: UserService) { }
+  subsciptions: Subscription[] = [];
+  invalidRegisterMessage: string = '';
+
+  constructor(private userService: UserService) {
+    this.subsciptions.push(this.userService.invalid.subscribe((message) => {
+      this.invalidRegisterMessage = message;
+    }))
+   }
 
   register(formValues: IFormValues): void {
     this.userService.register(formValues)

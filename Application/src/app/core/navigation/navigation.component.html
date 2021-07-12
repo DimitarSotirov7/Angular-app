@@ -9,7 +9,7 @@
         <a *ngIf="!isLogged" routerLink="/register">Register</a>
     </div>
     <div *ngIf="isLogged" class="profile">
-        <a routerLink="/">DS</a>
+        <a [routerLink]="['/profile', uid]">DS</a>
         <a (click)="logoutHandler()">Logout</a>
     </div>
 </nav>

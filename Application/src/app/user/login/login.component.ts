@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { IFormValues } from 'src/app/interfaces/iform-values';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,7 +10,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService) { }
+  subsciptions: Subscription[] = [];
+  invalidLoginMessage: string = '';
+
+  constructor(private userService: UserService) {
+    this.subsciptions.push(this.userService.invalid.subscribe((message) => {
+      this.invalidLoginMessage = message;
+    }))
+   }
 
   login(formValues: IFormValues): void {
     this.userService.login(formValues)

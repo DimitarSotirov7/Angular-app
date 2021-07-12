@@ -87,11 +87,15 @@ body {
   vertical-align: middle;
 }
 
+.invalid-login {
+  color: rgb(184, 0, 0);
+}
+
 .login p {
   text-align: right;
 }
 
-.login-help {
+/* .login-help {
   margin: 20px 0;
   font-size: 11px;
   color: white;
@@ -106,7 +110,7 @@ body {
 
 .login-help a:hover {
   text-decoration: underline;
-}
+} */
 
 :-moz-placeholder {
   color: #c9c9c9 !important;

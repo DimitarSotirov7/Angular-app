@@ -57,6 +57,10 @@ body {
   box-shadow: 0 1px whitesmoke;
 }
 
+.invalid-register {
+  color: rgb(184, 0, 0);
+}
+
 .register p {
   margin: 20px 0 0;
 }
@@ -91,7 +95,7 @@ body {
   text-align: right;
 }
 
-.register-help {
+/* .register-help {
   margin: 20px 0;
   font-size: 11px;
   color: white;
@@ -106,7 +110,7 @@ body {
 
 .register-help a:hover {
   text-decoration: underline;
-}
+} */
 
 :-moz-placeholder {
   color: #c9c9c9 !important;

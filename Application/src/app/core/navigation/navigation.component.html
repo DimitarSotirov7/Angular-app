@@ -5,11 +5,12 @@
     <div class="nav-items">
         <a routerLink="/">Home</a>
         <a routerLink="/about">About</a>
+        <a routerLink="/asd">Not found</a>
         <a *ngIf="!isLogged" routerLink="/login">Login</a>
         <a *ngIf="!isLogged" routerLink="/register">Register</a>
     </div>
     <div *ngIf="isLogged" class="profile">
-        <a [routerLink]="['/profile', uid]">DS</a>
+        <a [routerLink]="['/profile', uid]">{{icon}}</a>
         <a (click)="logoutHandler()">Logout</a>
     </div>
 </nav>

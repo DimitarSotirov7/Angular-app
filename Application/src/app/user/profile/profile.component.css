@@ -5,10 +5,27 @@
     margin-top: 100px;
 }
 
-input { 
+.user-value { 
     text-align: center; 
+    width: 250px;
+    height: 30px;
 }
 
 .user-key {
     margin-bottom: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(83, 186, 255);
+    color: white;
+}
+
+button:hover {
+    color: black;
+    background-color: rgb(170, 215, 245);
+    cursor: pointer;
 }

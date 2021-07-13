@@ -44,11 +44,17 @@ export class FirebaseService {
   }
 
   setUserFirestore(collection: string, doc: string, data: IUserProperties):void {
-    this.firestore.collection(collection).doc(doc).set({
-      firstName: data?.firstName,
-      lastName: data?.lastName,
-      age: data?.age,
-      location: data?.location,
-    } as IUserProperties);
+    if (data.firstName !== '') {
+      this.firestore.collection(collection).doc(doc).update({ firstName: data?.firstName });
+    }
+    if (data.lastName !== '') {
+      this.firestore.collection(collection).doc(doc).update({ lastName: data?.lastName });
+    }
+    if (data.age !== '') {
+      this.firestore.collection(collection).doc(doc).update({ age: data?.age });
+    }
+    if (data.location !== '') {
+      this.firestore.collection(collection).doc(doc).update({ location: data?.location });
+    }
   }
 }

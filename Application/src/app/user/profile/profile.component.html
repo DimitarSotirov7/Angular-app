@@ -1,7 +1,7 @@
 <section class="profile">
     <article class="header">
         <h2 class="user-name">
-            Hello, user
+            Hello, {{user.firstName}} {{user.lastName}}
         </h2>
     </article>
     <form #f="ngForm" (ngSubmit)="saveChanges(f.value)">
@@ -20,13 +20,13 @@
             </article>
             <article class="key-value-pair">
                 <p class="user-key">Age</p>
-                <input type="text" class="user-value" [value]="user.age" name="age" ngModel>
+                <input type="number" class="user-value" [value]="user.age" name="age" ngModel>
             </article>
             <article class="key-value-pair">
                 <p class="user-key">Location</p>
                 <input type="text" class="user-value" [value]="user.location" name="location" ngModel>
             </article>
-            <button >Save Changes</button>
+            <button>Save Changes</button>
         </article>
     </form>
 </section>

@@ -26,15 +26,12 @@ export class ProfileComponent {
 
       //get data from firestore
       userService.getUserData(user?.uid).get().subscribe(doc => {
-        console.log(doc.data());
         this.user.firstName = doc.data()?.firstName;
         this.user.lastName = doc.data()?.lastName;
         this.user.age = doc.data()?.age;
         this.user.location = doc.data()?.location;
       });
     });
-
-    console.log(this.user)
   }
 
   saveChanges(data: IUserProperties) {

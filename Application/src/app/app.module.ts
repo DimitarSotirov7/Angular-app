@@ -16,12 +16,14 @@ import { StorageService } from './services/storage.service';
 import { UserRoutingModule } from './user/user-routing.module';
 import { environment } from 'src/environments/environment.prod';
 import { FirebaseService } from './services/firebase.service';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

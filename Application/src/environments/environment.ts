@@ -12,6 +12,10 @@ export const environment = {
     messagingSenderId: "585872382003",
     appId: "1:585872382003:web:fd989d8d86b2753a902b46",
     measurementId: "G-TD3G7GL00R"
+  },
+  admin: {
+    email: 'admin@admin.admin',
+    password: 'admin@admin.admin'
   }
 };
 

@@ -7,6 +7,10 @@
         <p><input #passwordInput="ngModel" type="password" name="password" placeholder="Password" ngModel required minlength="6"></p>
         <div class="validation" *ngIf="passwordInput.errors?.required && passwordInput.touched">Password is required!</div>
         <div class="validation" *ngIf="passwordInput.errors?.minlength && passwordInput.touched">Password must contain at least 6 characters!</div>
+        <p><input #emailInput="ngModel" type="text" name="firstName" placeholder="First Name" ngModel required></p>
+        <div class="validation" *ngIf="emailInput.errors?.required && emailInput.touched">First Name is required!</div>
+        <p><input #emailInput="ngModel" type="text" name="lastName" placeholder="Last Name" ngModel required></p>
+        <div class="validation" *ngIf="emailInput.errors?.required && emailInput.touched">Last Name is required!</div>
         <p class="invalid-register" *ngIf="invalidRegisterMessage != ''">{{invalidRegisterMessage}}</p>
         <p class="remember-me">
             <label>

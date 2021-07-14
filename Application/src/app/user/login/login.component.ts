@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { IFormValues } from 'src/app/interfaces/iform-values';
+import { IFormValues } from 'src/app/interfaces/form-values';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

@@ -39,7 +39,7 @@ export class ProfileComponent {
   }
 
   saveChanges(data: IUserProperties) {
-    this.userService.setUserData('users', this.user.uid, data);
+    this.userService.setUserData(this.user.uid, data);
     this.user.firstName = data?.firstName !== '' ? data?.firstName : this.user.firstName;
     this.user.lastName = data?.lastName !== '' ? data?.lastName : this.user.lastName;
 

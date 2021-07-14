@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { IFormValues } from '../interfaces/iform-values';
+import { IFormValues } from '../interfaces/form-values';
 import { IUserProperties } from '../interfaces/user-properties';
 import { FirebaseService } from './firebase.service';
 import { StorageService } from './storage.service';
@@ -42,7 +42,7 @@ export class UserService {
   }
 
   register(formValues: IFormValues): void {
-    if (formValues.email === '' || formValues.password === '') {
+    if (formValues.email === '' || formValues.password === '' || formValues.firstName === '' || formValues.lastName === '') {
       return;
     }
     const register = this.firebase.register(formValues);
@@ -54,7 +54,7 @@ export class UserService {
 
       //Add data for the new user
       this.authState.subscribe(user => {
-        this.firebase.addUserFirestore('users', user?.uid);
+        this.firebase.addUserFirestore(user?.uid, formValues);
       });
     }).catch(err => {
       this.invalid.emit(err.message);
@@ -62,10 +62,10 @@ export class UserService {
   }
   
   getUserData(uid: string):AngularFirestoreDocument {
-    return this.firebase.getUserData('users', uid);
+    return this.firebase.getUserData(uid);
   }
 
-  setUserData(collection: string, doc: string, data: IUserProperties) {
-    return this.firebase.setUserFirestore(collection, doc, data);
+  setUserData(doc: string, data: IUserProperties) {
+    return this.firebase.setUserFirestore(doc, data);
   }
 }

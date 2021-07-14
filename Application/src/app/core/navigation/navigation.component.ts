@@ -26,6 +26,10 @@ export class NavigationComponent implements OnInit{
     this.userService.authState.subscribe(user => {
       this.uid = user?.uid;
       
+      if (!this.uid) {
+        return;
+      }
+
       this.userService.getUserData(this.uid).get().subscribe(doc => {
         this.icon = doc.data()?.firstName.charAt(0) + doc.data()?.lastName.charAt(0);
       });

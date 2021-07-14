@@ -29,3 +29,7 @@ button:hover {
     background-color: rgb(170, 215, 245);
     cursor: pointer;
 }
+
+.updated-data-message {
+    color: rgb(1, 150, 1);
+}

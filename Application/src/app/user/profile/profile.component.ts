@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IUserProperties } from 'src/app/interfaces/user-properties';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+import { ASTWithSource } from '@angular/compiler';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +20,9 @@ export class ProfileComponent {
     location: '',
   };
 
-  constructor(private userService: UserService) { 
+  updatedMessage: boolean = false;
+
+  constructor(private userService: UserService, private route: Router) { 
     userService.authState.subscribe(user => {
       //get data from fire auth
       this.user.email = user?.email;
@@ -36,5 +40,10 @@ export class ProfileComponent {
 
   saveChanges(data: IUserProperties) {
     this.userService.setUserData('users', this.user.uid, data);
+    this.user.firstName = data?.firstName !== '' ? data?.firstName : this.user.firstName;
+    this.user.lastName = data?.lastName !== '' ? data?.lastName : this.user.lastName;
+
+    this.updatedMessage = true;
+    setInterval(() => { this.updatedMessage = false }, 1000);
   }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { StorageService } from '../services/storage.service';
@@ -10,16 +9,14 @@ import { StorageService } from '../services/storage.service';
 
 @NgModule({
   declarations: [
-    NavigationComponent,
-    FooterComponent
+    NavigationComponent
   ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
-    NavigationComponent,
-    FooterComponent
+    NavigationComponent
   ],
   providers: [
     UserService,

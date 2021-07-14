@@ -27,6 +27,7 @@
                 <input type="text" class="user-value" [value]="user.location" name="location" ngModel>
             </article>
             <button>Save Changes</button>
+            <p class="updated-data-message" *ngIf="updatedMessage">Successfully updated</p>
         </article>
     </form>
 </section>

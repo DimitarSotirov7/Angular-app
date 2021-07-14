@@ -1,8 +1,17 @@
-<section class="container">
+<section class="container" *ngIf="!loggedUser">
     <article class="image-wrapper">
         <img src="../../assets/home-image.jpeg" alt="home-image">
     </article>
     <article class="welcome-message">
         Welcome to the application
     </article>
+</section>
+<section class="container" *ngIf="loggedUser">
+    <article class="image-wrapper-logged">
+        <img src="../../assets/logged-home-image.jpg" alt="home-image">
+    </article>
+    <article class="side-bar">
+        <app-side-bar></app-side-bar>
+    </article>
+    
 </section>

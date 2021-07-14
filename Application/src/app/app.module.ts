@@ -17,6 +17,7 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { environment } from 'src/environments/environment.prod';
 import { FirebaseService } from './services/firebase.service';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { BlogService } from './services/blog.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
   providers: [
     UserService,
     StorageService,
-    FirebaseService
+    FirebaseService,
+    BlogService
   ],
   bootstrap: [AppComponent]
 })

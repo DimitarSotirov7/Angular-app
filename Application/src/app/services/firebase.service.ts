@@ -5,7 +5,7 @@ import { IFormValues } from '../interfaces/form-values';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { IUserProperties } from '../interfaces/user-properties';
 import { IBlogProperties } from '../interfaces/blog-properties';
-import { blogCategoryNames } from '../interfaces/blog-category';
+import { blogCategoryNames } from '../interfaces/blog-category-names';
 import { IBlogCategoriesProperties } from '../interfaces/blog-categories-properties';
 import { environment } from '../../environments/environment';
 

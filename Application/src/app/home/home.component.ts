@@ -8,11 +8,11 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent {
 
-  uid:string = '';
+  loggedUser: boolean = false;
 
   constructor(private userService: UserService) {
     this.userService.authState.subscribe(user => {
-      this.uid = user?.uid;
+      this.loggedUser = user?.uid ? true : false;
     });
   }
 }

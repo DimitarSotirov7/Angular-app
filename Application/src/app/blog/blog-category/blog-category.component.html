@@ -1,0 +1,15 @@
+<section class="category">
+    <article class="add-category">
+        <form #f="ngForm" (ngSubmit)="addBlogQuestion(f.value)">
+            <article class="content">
+                <article class="key-value-pair">
+                    <p class="user-key">Question</p>
+                    <textarea  type="text" #questionInput class="user-value" name="question" ngModel required></textarea>
+                    <!-- <div class="validation" *ngIf="questionInput">Question is required!</div> -->
+                </article>
+                <button>Add Question</button>
+                <p class="updated-data-message" *ngIf="addedQuestion">Successfully added</p>
+            </article>
+        </form>
+    </article>
+</section>

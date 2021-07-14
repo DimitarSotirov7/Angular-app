@@ -4,11 +4,5 @@ export interface IBlogProperties {
     questionName: string,
     createdByDoc: string,
     createdByFullName: string, 
-    users: [
-        {
-            doc: string,
-            fullName: string,
-            answer: string
-        }
-    ]
+    users: []
 }

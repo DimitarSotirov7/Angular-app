@@ -7,6 +7,10 @@
     margin: 50px;
 }
 
+.title:hover {
+    border-bottom: 2px solid lightblue;;
+}
+
 .categories {
     padding: 0;
 }

@@ -18,13 +18,14 @@ import { environment } from 'src/environments/environment.prod';
 import { FirebaseService } from './services/firebase.service';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { BlogService } from './services/blog.service';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    SideBarComponent
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,10 +33,10 @@ import { BlogService } from './services/blog.service';
     AngularFirestoreModule,
     HttpClientModule,
     AppRoutingModule,
-    UserRoutingModule,
     SharedModule,
     CoreModule,
-    UserModule
+    UserModule,
+    BlogModule
   ],
   providers: [
     UserService,

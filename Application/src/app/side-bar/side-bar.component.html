@@ -4,8 +4,8 @@
             Blog Categories
         </h3>
         <ul class="categories">
-            <li class="category" *ngFor="let category of categories">
-                <a>{{category}}</a>
+            <li [routerLink]="['blog/category/', category.name]" class="category" *ngFor="let category of categories">
+                {{category.name}}
             </li>
         </ul>
     </section>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IBlogCategoriesProperties } from '../interfaces/blog-categories-properties';
 import { BlogService } from '../services/blog.service';
 
 @Component({
@@ -8,12 +9,11 @@ import { BlogService } from '../services/blog.service';
 })
 export class SideBarComponent {
 
-  categories: string[] = [];
+  categories: any[] = [];
 
   constructor(private blogService: BlogService) {
     this.blogService.getBlogCategories().get().subscribe(coll => {
-      this.categories = coll.docs.map(c => c.data().name);
-      console.log(this.categories);
+      this.categories = coll.docs.map(c => c.data());
     });
    }
 }

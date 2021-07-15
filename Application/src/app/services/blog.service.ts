@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IBlogProperties } from '../interfaces/blog-properties';
+import { IDiscussionProperties } from '../interfaces/discussion-properties';
 import { FirebaseService } from './firebase.service';
 
 @Injectable()
@@ -21,5 +22,9 @@ export class BlogService {
 
   getBlogsData() {
     return this.firebase.getBlogsData();
+  }
+
+  addBlogDiscussion(blogId: string, data: IDiscussionProperties): void {
+    this.firebase.addBlogDiscussion(blogId, data);
   }
 }

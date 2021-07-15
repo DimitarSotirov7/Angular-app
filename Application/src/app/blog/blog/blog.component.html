@@ -1,3 +1,37 @@
-<div>{{blog.categoryName}}</div>
-<div>{{blog.question}}</div>
-<div>{{blog.createdByFullName}}</div>
+<div class="contaqiner">
+    <section class="blog-title">
+        <h4 class="category-name">Category name: <a [routerLink]="['/blog/category', blog.categoryName]">{{blog.categoryName}}</a></h4>
+        <h2 class="blog-question">{{blog.question}}</h2>
+        <p class="created-by">
+            By 
+            <span *ngIf="personalBlog" [routerLink]="['/profile/', blog.createdByDoc]" class="personal">{{blog.createdByFullName}}</span>
+            <span *ngIf="!personalBlog">{{blog.createdByFullName}}</span>
+        </p>
+    </section>
+    <section class="blog-add-discution">
+        <form #f="ngForm" (ngSubmit)="addBlogDiscussion(f.value)">
+            <article class="content">
+                <article class="content-input">
+                    <textarea  type="text" #answerInput class="user-value" name="answer" ngModel required></textarea>
+                </article>
+                <article class="content-button">
+                    <button (click)="answerInput.value = ''">Add Discussion</button>
+                </article>
+                <article class="content-successful">
+                    <p class="updated-data-message" *ngIf="addedBlogDiscussion">Successfully added</p>
+                </article>
+            </article>
+        </form>
+    </section>
+    <section class="blog-discution">
+        <ul>
+            <li *ngFor="let user of blog.users">
+                <span>{{user.fullName}} said:</span>
+                <span>{{user.answer}}</span>
+            </li>
+        </ul>
+        <div *ngIf="blog.users?.length === 0">
+            Be the first one to add discussion.
+        </div>
+    </section>
+</div>

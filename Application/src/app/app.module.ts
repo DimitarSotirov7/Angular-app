@@ -13,7 +13,6 @@ import { CoreModule } from './core/core.module';
 import { UserService } from './services/user.service';
 import { UserModule } from './user/user.module';
 import { StorageService } from './services/storage.service';
-import { UserRoutingModule } from './user/user-routing.module';
 import { environment } from 'src/environments/environment.prod';
 import { FirebaseService } from './services/firebase.service';
 import { SideBarComponent } from './side-bar/side-bar.component';

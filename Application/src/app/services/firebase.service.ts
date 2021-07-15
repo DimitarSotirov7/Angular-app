@@ -8,6 +8,7 @@ import { IBlogProperties } from '../interfaces/blog-properties';
 import { blogCategoryNames } from '../interfaces/blog-category-names';
 import { IBlogCategoriesProperties } from '../interfaces/blog-categories-properties';
 import { environment } from '../../environments/environment';
+import { IDiscussionProperties } from '../interfaces/discussion-properties';
 
 @Injectable()
 export class FirebaseService {
@@ -105,7 +106,7 @@ export class FirebaseService {
   private blogCategoriesFirestoreSeeder(): void {
     //admin only
     this.authState.subscribe(user => {
-      if(user?.email === environment.admin.email) {
+      if (user?.email === environment.admin.email) {
         blogCategoryNames.forEach(bc => {
           this.getBlogCategoryData(bc.doc).get().subscribe((doc) => {
             if (!doc.exists) {
@@ -114,7 +115,22 @@ export class FirebaseService {
             };
           })
         });
-      }; 
+      };
+    });
+  }
+
+  // ---------------- Firestore - blogs - users ----------------
+
+  addBlogDiscussion(blogId: string, data: IDiscussionProperties) {
+    let blog: any = {};
+    let usersToAdd: any = [];
+    this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
+      blog = b.data();
+
+      usersToAdd = blog?.users === undefined ? [] : blog?.users;
+
+      usersToAdd.push(data);
+      this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToAdd });
     });
   }
 }

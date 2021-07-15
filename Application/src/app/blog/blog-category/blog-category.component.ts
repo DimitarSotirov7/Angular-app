@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class BlogCategoryComponent {
 
   addedQuestion: boolean = false;
+  invalidInput: boolean = false;
   user = { uid: '', fullName: '' };
   categoryName: string = this.getCategoryNameFromRoute();
   blogs: any[] = [];
@@ -33,6 +34,13 @@ export class BlogCategoryComponent {
   }
 
   addBlogQuestion(data: IBlogProperties) {
+
+    if (data.question === '') {
+      this.invalidInput = true;
+      setInterval(() => { this.invalidInput = false }, 1000);
+      return;
+    }
+
     this.blogService.addBlog({
       categoryName: this.categoryName,
       question: data.question,
@@ -49,7 +57,7 @@ export class BlogCategoryComponent {
 
   private getBlogsData() {
     this.blogService.getBlogsData().get().subscribe(blogColl => {
-      this.blogs = blogColl.docs.filter(blog => blog.data().categoryName === this.categoryName).map(blog => { 
+      this.blogs = blogColl.docs.filter(blog => blog.data().categoryName === this.categoryName).reverse().map(blog => { 
         return { 
           data: blog.data(), 
           id: blog.id 

@@ -5,7 +5,7 @@
                 <article class="key-value-pair">
                     <p class="user-key">Blog Question</p>
                     <textarea  type="text" #questionInput class="user-value" name="question" ngModel required></textarea>
-                    <!-- <div class="validation" *ngIf="questionInput">Question is required!</div> -->
+                    <div class="validation" *ngIf="invalidInput">Field is required!</div>
                 </article>
                 <button (click)="questionInput.value = ''">Add Question</button>
                 <p class="updated-data-message" *ngIf="addedQuestion">Successfully added</p>

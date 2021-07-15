@@ -20,6 +20,7 @@ export class BlogComponent {
   blogId: string = this.getBlogIdFromRoute();
   personalBlog: boolean = false;
   addedBlogDiscussion: boolean = false;
+  invalidInput: boolean = false;
 
   constructor(private blogService: BlogService, private route: Router, private userService: UserService) {
     this.getBlogData();
@@ -28,6 +29,7 @@ export class BlogComponent {
   getBlogData() {
     this.blogService.getBlogData(this.blogId).get().subscribe(blog => {
       this.blog = blog.data();
+      this.blog.users.reverse();
 
       this.userService.authState.subscribe(u => {
         this.currUser.uid = u?.uid;
@@ -48,6 +50,13 @@ export class BlogComponent {
   }
 
   addBlogDiscussion(data: IDiscussionProperties) {
+
+    if (data.answer === '') {
+      this.invalidInput = true;
+      setInterval(() => { this.invalidInput = false }, 1000);
+      return;
+    }
+
     this.blogService.addBlogDiscussion(this.blogId, {
       uid: this.currUser.uid,
       fullName: this.currUser.fullName,
@@ -59,6 +68,7 @@ export class BlogComponent {
     setInterval(() => { 
       this.addedBlogDiscussion = false 
       this.getBlogData();
+      data.answer = '';
     }, 1000);
   }
 

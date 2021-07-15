@@ -55,6 +55,7 @@ export class BlogCategoryComponent {
     setInterval(() => { this.addedQuestion = false }, 1000);
   }
 
+
   private getBlogsData() {
     this.blogService.getBlogsData().get().subscribe(blogColl => {
       this.blogs = blogColl.docs.filter(blog => blog.data().categoryName === this.categoryName).reverse().map(blog => { 

@@ -20,6 +20,7 @@ export class BlogComponent {
   blogId: string = this.getBlogIdFromRoute();
   personalBlog: boolean = false;
   addedBlogDiscussion: boolean = false;
+  editedQuestion: boolean = false;
   invalidInput: boolean = false;
 
   constructor(private blogService: BlogService, private route: Router, private userService: UserService) {
@@ -47,6 +48,20 @@ export class BlogComponent {
         }
       });
     });
+  }
+
+  updateBlogQuestion(blogId: string, data: IBlogProperties) {
+
+    if (data.question === '') {
+      return;
+    }
+
+    this.blogService.updateBlogQuestion(blogId, data);
+
+    this.getBlogData();
+
+    this.editedQuestion = true;
+    setInterval(() => { this.editedQuestion = false }, 1000);
   }
 
   addBlogDiscussion(data: IDiscussionProperties) {

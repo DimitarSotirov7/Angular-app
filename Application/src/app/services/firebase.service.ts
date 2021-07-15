@@ -87,9 +87,9 @@ export class FirebaseService {
     this.firestore.collection(this.blogColl).add(data);
   }
 
-  setBlogFirestore(doc: string, data: IBlogProperties): void {
-    if (data.question !== '') {
-      this.firestore.collection(this.blogColl).doc(doc).update({ questionName: data?.question });
+  setBlogQuestionFirestore(doc: string, data: IBlogProperties): void {
+    if (data?.question !== '') {
+      this.firestore.collection(this.blogColl).doc(doc).update({ question: data?.question });
     }
   }
 

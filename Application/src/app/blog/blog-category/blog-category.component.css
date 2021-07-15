@@ -15,8 +15,8 @@
     margin: 10px;
 }
 
-.user-value { 
-    text-align: center; 
+.user-value {
+    text-align: center;
     width: 250px;
     height: 30px;
 }
@@ -46,4 +46,36 @@ button:hover {
 
 .validation {
     color: rgb(184, 0, 0);
+}
+
+textarea {
+    resize: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.blog {
+    margin: 20px 20%;
+    font-size: 20px;
+    background-color: rgb(255, 233, 193);
+    border: 1px solid rgb(0, 174, 255);
+    border-radius: 5px;
+    min-width: 400px;
+}
+
+.blog:hover{
+    cursor: pointer;
+    background-color: rgb(170, 215, 245);
+}
+
+.blog-question {
+    text-align: left;
+    margin: 10px 20px;
+}
+
+.blog-created-by {
+    text-align: right;
+    margin: 10px 20px;
 }

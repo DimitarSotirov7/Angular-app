@@ -22,7 +22,7 @@ export class ProfileComponent {
 
   updatedMessage: boolean = false;
 
-  constructor(private userService: UserService, private route: Router) { 
+  constructor(private userService: UserService) { 
     userService.authState.subscribe(user => {
       //get data from fire auth
       this.user.email = user?.email;

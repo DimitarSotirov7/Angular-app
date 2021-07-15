@@ -14,4 +14,12 @@ export class BlogService {
   addBlog(data: IBlogProperties): void {
     this.firebase.addBlogFirestore(data);
   }
+
+  getBlogData(blogId: string) {
+    return this.firebase.getBlogData(blogId);
+  }
+
+  getBlogsData() {
+    return this.firebase.getBlogsData();
+  }
 }

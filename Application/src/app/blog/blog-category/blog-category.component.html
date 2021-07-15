@@ -3,13 +3,21 @@
         <form #f="ngForm" (ngSubmit)="addBlogQuestion(f.value)">
             <article class="content">
                 <article class="key-value-pair">
-                    <p class="user-key">Question</p>
+                    <p class="user-key">Blog Question</p>
                     <textarea  type="text" #questionInput class="user-value" name="question" ngModel required></textarea>
                     <!-- <div class="validation" *ngIf="questionInput">Question is required!</div> -->
                 </article>
-                <button>Add Question</button>
+                <button (click)="questionInput.value = ''">Add Question</button>
                 <p class="updated-data-message" *ngIf="addedQuestion">Successfully added</p>
             </article>
         </form>
+    </article>
+    <article class="existing-blogs">
+        <ul>
+            <li class="blog" *ngFor="let blog of blogs" [routerLink]="['/blog/' + blog.id]">
+                <div class="blog-question">{{blog.data.question}}</div>
+                <div class="blog-created-by">{{blog.data.createdByFullName}}</div>
+            </li>
+        </ul>
     </article>
 </section>

@@ -15,7 +15,6 @@ export const environment = {
   },
   admin: {
     email: 'admin@admin.admin',
-    password: 'admin@admin.admin'
   }
 };
 

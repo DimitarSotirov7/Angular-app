@@ -10,7 +10,6 @@ export const environment = {
     measurementId: "G-TD3G7GL00R"
   },
   admin: {
-    email: 'admin@admin.admin',
-    password: 'admin@admin.admin'
+    email: 'admin@admin.admin'
   }
 };

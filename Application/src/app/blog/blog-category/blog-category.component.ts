@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IBlogProperties } from 'src/app/interfaces/blog-properties';
 import { BlogService } from 'src/app/services/blog.service';
@@ -27,10 +27,10 @@ export class BlogCategoryComponent {
 
       this.userService.getUserData(this.user.uid).get().subscribe(u => {
         this.user.fullName = u.data()?.firstName + ' ' + u.data()?.lastName;
+
+        this.getBlogsData();
       });
     });
-
-    this.getBlogsData();
   }
 
   addBlogQuestion(data: IBlogProperties) {

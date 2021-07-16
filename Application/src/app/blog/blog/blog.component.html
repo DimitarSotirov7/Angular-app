@@ -1,18 +1,33 @@
 <div class="contaqiner">
     <section class="blog-title">
-        <h4 class="category-name">Category name: <a [routerLink]="['/blog/category', blog.categoryName]">{{blog.categoryName}}</a></h4>
-        <h2 class="blog-question">{{blog.question}}</h2>
+        <h4 class="category-name">Category name: <a
+                [routerLink]="['/blog/category', blog.categoryName]">{{blog.categoryName}}</a></h4>
+        <h2 *ngIf="!editClicked" class="blog-question">{{blog.question}}</h2>
+        <form #bl="ngForm">
+            <textarea *ngIf="editClicked" value="blog.question" class="blog-question" name="question"
+                [ngModel]="blog.question"></textarea>
+        </form>
+        <div class="change-blog-question" *ngIf="personalBlog">
+            <button *ngIf="!editClicked" class="edit" (click)="editToggle()">Edit</button>
+            <button *ngIf="editClicked" class="edit" (click)="updateBlogQuestion(bl.value)">Confirm edit</button>
+            <button class="remove" (click)="removeToggle()">Remove</button>
+            <span *ngIf="removeClicked">
+                <span class="remove-alert">Are you sure?</span>
+                <span class="remove-yes" (click)="deleteBlogQuestion()">Yes</span><span class="remove-no" (click)="removeToggle()">No</span>
+            </span>
+        </div>
         <p class="created-by">
-            By 
-            <span *ngIf="personalBlog" [routerLink]="['/profile/', blog.createdByDoc]" class="personal">{{blog.createdByFullName}}</span>
+            By
+            <span *ngIf="personalBlog" [routerLink]="['/profile/', blog.createdByDoc]"
+                class="personal">{{blog.createdByFullName}}</span>
             <span *ngIf="!personalBlog">{{blog.createdByFullName}}</span>
         </p>
     </section>
     <section class="blog-add-discution">
-        <form #f="ngForm" (ngSubmit)="addBlogDiscussion(f.value)">
+        <form #disc="ngForm" (ngSubmit)="addBlogDiscussion(disc.value)">
             <article class="content">
                 <article class="content-input">
-                    <textarea  type="text" #answerInput class="user-value" name="answer" ngModel required></textarea>
+                    <textarea type="text" #answerInput class="user-value" name="answer" ngModel required></textarea>
                 </article>
                 <article class="content-button">
                     <button (click)="answerInput.value = ''">Add Discussion</button>

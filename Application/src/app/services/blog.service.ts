@@ -16,8 +16,12 @@ export class BlogService {
     this.firebase.addBlogFirestore(data);
   }
 
-  updateBlogQuestion(blogId: string, data: IBlogProperties): void {
-    this.firebase.setBlogQuestionFirestore(blogId, data);
+  updateBlogQuestion(blogId: string, question: string): void {
+    this.firebase.setBlogQuestionFirestore(blogId, question);
+  }
+
+  deleteBlogQuestion(blogId: string): void {
+    this.firebase.deleteBlogQuestionFirestore(blogId);
   }
 
   getBlogData(blogId: string) {

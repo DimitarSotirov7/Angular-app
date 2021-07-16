@@ -87,10 +87,14 @@ export class FirebaseService {
     this.firestore.collection(this.blogColl).add(data);
   }
 
-  setBlogQuestionFirestore(doc: string, data: IBlogProperties): void {
-    if (data?.question !== '') {
-      this.firestore.collection(this.blogColl).doc(doc).update({ question: data?.question });
+  setBlogQuestionFirestore(doc: string, question: string): void {
+    if (question !== '') {
+      this.firestore.collection(this.blogColl).doc(doc).update({ question: question });
     }
+  }
+
+  deleteBlogQuestionFirestore(doc: string): void {
+    this.firestore.collection(this.blogColl).doc(doc).delete();
   }
 
   // ---------------- Firestore - blogCategories ---------------- 

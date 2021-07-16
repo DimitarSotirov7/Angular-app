@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IBlogProperties } from 'src/app/interfaces/blog-properties';
 import { IDiscussionProperties } from 'src/app/interfaces/discussion-properties';
@@ -12,6 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BlogComponent {
 
+  
+  @Input() blogQuestion: string = '';
+
   currUser: any = {
     uid: '',
     fullName: ''
@@ -21,6 +24,8 @@ export class BlogComponent {
   personalBlog: boolean = false;
   addedBlogDiscussion: boolean = false;
   editedQuestion: boolean = false;
+  editClicked: boolean = false;
+  removeClicked: boolean = false;
   invalidInput: boolean = false;
 
   constructor(private blogService: BlogService, private route: Router, private userService: UserService) {
@@ -30,6 +35,7 @@ export class BlogComponent {
   getBlogData() {
     this.blogService.getBlogData(this.blogId).get().subscribe(blog => {
       this.blog = blog.data();
+      this.blogQuestion = this.blog.question;
       this.blog.users.reverse();
 
       this.userService.authState.subscribe(u => {
@@ -50,18 +56,37 @@ export class BlogComponent {
     });
   }
 
-  updateBlogQuestion(blogId: string, data: IBlogProperties) {
+  updateBlogQuestion(data: any) {
 
     if (data.question === '') {
+      this.invalidInput = true;
+      setInterval(() => { this.invalidInput = false }, 1000);
       return;
     }
 
-    this.blogService.updateBlogQuestion(blogId, data);
+    this.blogService.updateBlogQuestion(this.blogId, data.question);
 
-    this.getBlogData();
-
+    
     this.editedQuestion = true;
-    setInterval(() => { this.editedQuestion = false }, 1000);
+    setInterval(() => {
+      this.editedQuestion = false;
+      this.getBlogData();
+    }, 1000);
+    
+    this.editToggle();
+  }
+
+  editToggle(): void {
+    this.editClicked = !this.editClicked;
+  }
+
+  removeToggle(): void {
+    this.removeClicked = !this.removeClicked;
+  }
+
+  deleteBlogQuestion() {
+    this.blogService.deleteBlogQuestion(this.blogId);
+    this.route.navigateByUrl(`/blog/category/${this.blog.categoryName}`);
   }
 
   addBlogDiscussion(data: IDiscussionProperties) {
@@ -80,8 +105,8 @@ export class BlogComponent {
     });
 
     this.addedBlogDiscussion = true;
-    setInterval(() => { 
-      this.addedBlogDiscussion = false 
+    setInterval(() => {
+      this.addedBlogDiscussion = false
       this.getBlogData();
       data.answer = '';
     }, 1000);

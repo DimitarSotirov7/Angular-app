@@ -130,11 +130,26 @@ export class FirebaseService {
     let usersToAdd: any = [];
     this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
       blog = b.data();
-
       usersToAdd = blog?.users === undefined ? [] : blog?.users;
 
       usersToAdd.push(data);
       this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToAdd });
+    });
+  }
+
+  updateBlogDiscussion(blogId: string, discussionId: string, answer: string) {
+    let blog: any = {};
+    let usersToUpdate: IDiscussionProperties[] = [];
+    this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
+      blog = b.data();
+      usersToUpdate = blog?.users;
+      usersToUpdate = usersToUpdate.map(disc => {
+        if (disc.uid === discussionId) {
+          disc.answer = answer;
+        }
+        return disc;
+      })
+      this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToUpdate });
     });
   }
 }

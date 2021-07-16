@@ -35,4 +35,8 @@ export class BlogService {
   addBlogDiscussion(blogId: string, data: IDiscussionProperties): void {
     this.firebase.addBlogDiscussion(blogId, data);
   }
+
+  updateBlogDiscussion(blogId: string, discussionId: string, answer: string): void {
+    this.firebase.updateBlogDiscussion(blogId, discussionId, answer);
+  }
 }

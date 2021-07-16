@@ -24,9 +24,13 @@ export class BlogComponent {
   personalBlog: boolean = false;
   addedBlogDiscussion: boolean = false;
   editedQuestion: boolean = false;
-  editClicked: boolean = false;
-  removeClicked: boolean = false;
-  invalidInput: boolean = false;
+  editedDiscussion: boolean = false;
+  editQuestionClicked: boolean = false;
+  removeQuestionClicked: boolean = false;
+  editDiscussionClicked: boolean = false;
+  removeDiscussionClicked: boolean = false;
+  invalidQuestionInput: boolean = false;
+  invalidDiscussionInput: boolean = false;
 
   constructor(private blogService: BlogService, private route: Router, private userService: UserService) {
     this.getBlogData();
@@ -59,8 +63,8 @@ export class BlogComponent {
   updateBlogQuestion(data: any) {
 
     if (data.question === '') {
-      this.invalidInput = true;
-      setInterval(() => { this.invalidInput = false }, 1000);
+      this.invalidQuestionInput = true;
+      setInterval(() => { this.invalidQuestionInput = false }, 1000);
       return;
     }
 
@@ -68,20 +72,54 @@ export class BlogComponent {
 
     
     this.editedQuestion = true;
-    setInterval(() => {
+    var interval = setInterval(() => {
       this.editedQuestion = false;
       this.getBlogData();
+      clearInterval(interval);
     }, 1000);
     
-    this.editToggle();
+    this.editQuestionToggle();
   }
 
-  editToggle(): void {
-    this.editClicked = !this.editClicked;
+  updateBlogDiscussion(discussionId: string, data: any) {
+
+    if (data.answer === '') {
+      this.invalidDiscussionInput = true;
+      setInterval(() => { this.invalidDiscussionInput = false }, 1000);
+      return;
+    }
+
+    this.blogService.updateBlogDiscussion(this.blogId, discussionId, data.answer);
+
+    this.editedDiscussion = true;
+    var interval = setInterval(() => {
+      this.editedDiscussion = false;
+      this.getBlogData();
+      clearInterval(interval);
+    }, 1000);
+    
+
+    this.editDiscussionToggle();
   }
 
-  removeToggle(): void {
-    this.removeClicked = !this.removeClicked;
+  editQuestionToggle(): void {
+    this.editQuestionClicked = !this.editQuestionClicked;
+  }
+
+  editDiscussionToggle(): void {
+    this.editDiscussionClicked = !this.editDiscussionClicked;
+  }
+
+  removeQuestionToggle(): void {
+    this.removeQuestionClicked = !this.removeQuestionClicked;
+  }
+
+  removeDiscussionToggle(): void {
+    this.removeDiscussionClicked = !this.removeDiscussionClicked;
+  }
+
+  deleteBlogDiscussion(discussionId: string) {
+    //TODO
   }
 
   deleteBlogQuestion() {
@@ -92,8 +130,8 @@ export class BlogComponent {
   addBlogDiscussion(data: IDiscussionProperties) {
 
     if (data.answer === '') {
-      this.invalidInput = true;
-      setInterval(() => { this.invalidInput = false }, 1000);
+      this.invalidQuestionInput = true;
+      setInterval(() => { this.invalidQuestionInput = false }, 1000);
       return;
     }
 

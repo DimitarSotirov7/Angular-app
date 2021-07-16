@@ -42,37 +42,37 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.change-blog-question button {
+.change button {
     padding: 5px 10px;
 }
 
-.change-blog-question .edit {
+.change .edit {
     margin-right: 5px;
 }
 
-.change-blog-question .remove {
+.change .remove {
     margin-left: 5px;
 }
 
-.change-blog-question span {
+.change span {
     margin-left: 5px;
 }
 
-.change-blog-question span.remove-yes {
+.change span.remove-yes {
     color: rgb(1, 150, 1);
     cursor: pointer;
 }
 
-.change-blog-question span.remove-yes:hover {
+.change span.remove-yes:hover {
     font-size: 1.3em;
 }
 
-.change-blog-question span.remove-no {
+.change span.remove-no {
     color: rgb(156, 26, 9);
     cursor: pointer;
 }
 
-.change-blog-question span.remove-no:hover {
+.change span.remove-no:hover {
     font-size: 1.3em;
 }
 
@@ -134,6 +134,13 @@ textarea {
     margin-top: 15px;
 }
 
+.validation-discussion {
+    color: rgb(156, 26, 9);
+    margin-left: 10px;
+    margin-top: 15px;
+    font-size: 5px;
+}
+
 ul {
     list-style: none;
 }
@@ -141,20 +148,19 @@ ul {
 .blog-discution {
     text-align: center;
     margin: 2% 10%;
-    background-color: lightblue;
-    border: 1px solid rgb(117, 196, 223);
-    border-radius: 5px;
     color: cornsilk;
 }
 
 .blog-discution ul {
     padding: 0;
-    margin: 10px 5%
 }
 
 .blog-discution li {
-    padding: 10px;
+    padding: 10px 20px;
     text-align: left;
+    background-color: lightblue;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .blog-discution li span:first-child {
@@ -165,4 +171,9 @@ ul {
 .blog-discution li span:last-child {
     font-size: 25px;
     margin-left: 10px;
+}
+
+.blog-discution form .edit {
+    padding: 5px;
+    margin-left: 5px;
 }

@@ -2,18 +2,18 @@
     <section class="blog-title">
         <h4 class="category-name">Category name: <a
                 [routerLink]="['/blog/category', blog.categoryName]">{{blog.categoryName}}</a></h4>
-        <h2 *ngIf="!editClicked" class="blog-question">{{blog.question}}</h2>
+        <h2 *ngIf="!editQuestionClicked" class="blog-question">{{blog.question}}</h2>
         <form #bl="ngForm">
-            <textarea *ngIf="editClicked" value="blog.question" class="blog-question" name="question"
-                [ngModel]="blog.question"></textarea>
+            <textarea *ngIf="editQuestionClicked" class="blog-question" name="question"[ngModel]="blog.question"></textarea>
         </form>
-        <div class="change-blog-question" *ngIf="personalBlog">
-            <button *ngIf="!editClicked" class="edit" (click)="editToggle()">Edit</button>
-            <button *ngIf="editClicked" class="edit" (click)="updateBlogQuestion(bl.value)">Confirm edit</button>
-            <button class="remove" (click)="removeToggle()">Remove</button>
-            <span *ngIf="removeClicked">
+        <div class="change" *ngIf="personalBlog">
+            <button *ngIf="!editQuestionClicked" class="edit" (click)="editQuestionToggle()">Edit</button>
+            <button *ngIf="editQuestionClicked" class="edit" (click)="updateBlogQuestion(bl.value)">Confirm edit</button>
+            <button class="remove" (click)="removeQuestionToggle()">Remove</button>
+            <span *ngIf="removeQuestionClicked">
                 <span class="remove-alert">Are you sure?</span>
-                <span class="remove-yes" (click)="deleteBlogQuestion()">Yes</span><span class="remove-no" (click)="removeToggle()">No</span>
+                <span class="remove-yes" (click)="deleteBlogQuestion()">Yes</span>
+                <span class="remove-no" (click)="removeQuestionToggle()">No</span>
             </span>
         </div>
         <p class="created-by">
@@ -34,16 +34,34 @@
                 </article>
                 <article class="content-successful">
                     <p class="updated-data-message" *ngIf="addedBlogDiscussion">Successfully added</p>
-                    <p class="validation" *ngIf="invalidInput">Field is required!</p>
+                    <p class="validation" *ngIf="invalidQuestionInput">Field is required!</p>
                 </article>
             </article>
         </form>
     </section>
     <section class="blog-discution">
         <ul>
-            <li *ngFor="let user of blog.users">
-                <span>{{user.fullName}} said:</span>
-                <span>{{user.answer}}</span>
+            <li *ngFor="let discussion of blog.users">
+                <div>
+                    <span>{{discussion.fullName}} said:</span>
+                    <span *ngIf="!editDiscussionClicked">{{discussion.answer}}</span>
+                    <span *ngIf="editDiscussionClicked">
+                        <form #bl="ngForm" (ngSubmit)="updateBlogDiscussion(discussion.uid, bl.value)">
+                            <textarea class="blog-discussion" name="answer" [ngModel]="discussion.answer"></textarea>
+                            <button *ngIf="editDiscussionClicked" class="edit" >Confirm edit</button>
+                            <span class="validation-discussion" *ngIf="invalidDiscussionInput">Field is required!</span>
+                        </form>
+                    </span>
+                </div>
+                <div class="change" *ngIf="personalBlog">
+                    <button class="edit" (click)="editDiscussionToggle()">Edit</button>
+                    <button class="remove" (click)="removeDiscussionToggle()">Remove</button>
+                    <span class="discussion-remove-alert" *ngIf="removeDiscussionClicked">
+                        <span class="remove-alert">Are you sure?</span>
+                        <span class="remove-yes" (click)="deleteBlogDiscussion(discussion.uid)">Yes</span>
+                        <span class="remove-no" (click)="removeDiscussionToggle()">No</span>
+                    </span>
+                </div>
             </li>
         </ul>
         <div *ngIf="blog.users?.length === 0">

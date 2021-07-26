@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IUserProperties } from 'src/app/interfaces/user-properties';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { ASTWithSource } from '@angular/compiler';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +21,14 @@ export class ProfileComponent {
 
   updatedMessage: boolean = false;
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService, route: Router) { 
+
+    userService.authState.subscribe(u => {
+      if (!u?.uid) {
+        route.navigateByUrl('');
+      }
+    });
+
     userService.authState.subscribe(user => {
       //get data from fire auth
       this.user.email = user?.email;

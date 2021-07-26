@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { IFormValues } from 'src/app/interfaces/form-values';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,14 @@ export class LoginComponent {
   subsciptions: Subscription[] = [];
   invalidLoginMessage: string = '';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, route: Router) {
+
+    userService.authState.subscribe(u => {
+      if (u?.uid) {
+        route.navigateByUrl('');
+      }
+    });
+
     this.subsciptions.push(this.userService.invalid.subscribe((message) => {
       this.invalidLoginMessage = message;
     }))

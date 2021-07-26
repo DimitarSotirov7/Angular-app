@@ -177,3 +177,7 @@ ul {
     padding: 5px;
     margin-left: 5px;
 }
+
+.no-discussions {
+    color: black;
+}

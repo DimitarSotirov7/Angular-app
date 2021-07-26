@@ -24,13 +24,13 @@ export class BlogComponent {
   personalBlog: boolean = false;
   addedBlogDiscussion: boolean = false;
   editedQuestion: boolean = false;
-  editedDiscussion: boolean = false;
   editQuestionClicked: boolean = false;
   removeQuestionClicked: boolean = false;
-  editDiscussionClicked: boolean = false;
-  removeDiscussionClicked: boolean = false;
   invalidQuestionInput: boolean = false;
   invalidDiscussionInput: boolean = false;
+
+  clickedEditDiscussion: number = 0;
+  clickedRemoveDiscussion: number = 0;
 
   constructor(private blogService: BlogService, private route: Router, private userService: UserService) {
     this.getBlogData();
@@ -40,7 +40,7 @@ export class BlogComponent {
     this.blogService.getBlogData(this.blogId).get().subscribe(blog => {
       this.blog = blog.data();
       this.blogQuestion = this.blog.question;
-      this.blog.users.reverse();
+      (this.blog as IBlogProperties).users.sort((a, b) => { return b.did - a.did });
 
       this.userService.authState.subscribe(u => {
         this.currUser.uid = u?.uid;
@@ -89,48 +89,50 @@ export class BlogComponent {
       return;
     }
 
-    this.blogService.updateBlogDiscussion(this.blogId, discussionId, data.answer);
+    this.blogService.updateBlogDiscussion(this.blogId, discussionId, data.answer);    
 
-    this.editedDiscussion = true;
+    this.editDiscussionToggle(discussionId);
     var interval = setInterval(() => {
-      this.editedDiscussion = false;
       this.getBlogData();
       clearInterval(interval);
     }, 1000);
-    
-
-    this.editDiscussionToggle();
   }
 
   deleteBlogDiscussion(discussionId: number) {
 
     this.blogService.deleteBlogDiscussion(this.blogId, discussionId);
-
-    this.editedDiscussion = true;
+    
+    this.removeDiscussionToggle(discussionId);
     var interval = setInterval(() => {
-      this.editedDiscussion = false;
       this.getBlogData();
       clearInterval(interval);
     }, 1000);
-    
-
-    this.removeDiscussionToggle();
   }
 
   editQuestionToggle(): void {
     this.editQuestionClicked = !this.editQuestionClicked;
   }
 
-  editDiscussionToggle(): void {
-    this.editDiscussionClicked = !this.editDiscussionClicked;
+  editDiscussionToggle(did: number): void {
+
+    if (this.clickedEditDiscussion === did) {
+      this.clickedEditDiscussion = 0;
+    } else {
+      this.clickedEditDiscussion = did;
+    }
   }
 
   removeQuestionToggle(): void {
     this.removeQuestionClicked = !this.removeQuestionClicked;
   }
 
-  removeDiscussionToggle(): void {
-    this.removeDiscussionClicked = !this.removeDiscussionClicked;
+  removeDiscussionToggle(did: number): void {
+
+    if (this.clickedRemoveDiscussion === did) {
+      this.clickedRemoveDiscussion = 0;
+    } else {
+      this.clickedRemoveDiscussion = did;
+    }
   }
 
   deleteBlogQuestion() {
@@ -155,10 +157,11 @@ export class BlogComponent {
     });
 
     this.addedBlogDiscussion = true;
-    setInterval(() => {
+    var interval = setInterval(() => {
       this.addedBlogDiscussion = false
       this.getBlogData();
       data.answer = '';
+      clearInterval(interval);
     }, 1000);
   }
 

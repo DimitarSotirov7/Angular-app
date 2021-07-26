@@ -44,27 +44,27 @@
             <li *ngFor="let discussion of blog.users">
                 <div>
                     <span>{{discussion.fullName}} said:</span>
-                    <span *ngIf="!editDiscussionClicked">{{discussion.answer}}</span>
-                    <span *ngIf="editDiscussionClicked">
+                    <span *ngIf="clickedEditDiscussion === 0 || clickedEditDiscussion !== discussion.did">{{discussion.answer}}</span>
+                    <span *ngIf="clickedEditDiscussion !== 0 && clickedEditDiscussion === discussion.did">
                         <form #bl="ngForm" (ngSubmit)="updateBlogDiscussion(discussion?.did, bl.value)">
                             <textarea class="blog-discussion" name="answer" [ngModel]="discussion.answer"></textarea>
-                            <button *ngIf="editDiscussionClicked" class="edit" >Confirm edit</button>
+                            <button class="edit" >Confirm edit</button>
                             <span class="validation-discussion" *ngIf="invalidDiscussionInput">Field is required!</span>
                         </form>
                     </span>
                 </div>
                 <div class="change" *ngIf="personalBlog">
-                    <button class="edit" (click)="editDiscussionToggle()">Edit</button>
-                    <button class="remove" (click)="removeDiscussionToggle()">Remove</button>
-                    <span class="discussion-remove-alert" *ngIf="removeDiscussionClicked">
+                    <button class="edit" (click)="editDiscussionToggle(discussion.did)">Edit</button>
+                    <button class="remove" (click)="removeDiscussionToggle(discussion.did)">Remove</button>
+                    <span class="discussion-remove-alert" *ngIf="clickedRemoveDiscussion !== 0 && clickedRemoveDiscussion === discussion.did">
                         <span class="remove-alert">Are you sure?</span>
                         <span class="remove-yes" (click)="deleteBlogDiscussion(discussion.did)">Yes</span>
-                        <span class="remove-no" (click)="removeDiscussionToggle()">No</span>
+                        <span class="remove-no" (click)="removeDiscussionToggle(discussion.did)">No</span>
                     </span>
                 </div>
             </li>
         </ul>
-        <div *ngIf="blog.users?.length === 0">
+        <div class="no-discussions" *ngIf="blog.users?.length === 0">
             Be the first one to add discussion.
         </div>
     </section>

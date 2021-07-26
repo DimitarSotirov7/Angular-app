@@ -36,7 +36,11 @@ export class BlogService {
     this.firebase.addBlogDiscussion(blogId, data);
   }
 
-  updateBlogDiscussion(blogId: string, discussionId: string, answer: string): void {
+  updateBlogDiscussion(blogId: string, discussionId: number, answer: string): void {
     this.firebase.updateBlogDiscussion(blogId, discussionId, answer);
+  }
+
+  deleteBlogDiscussion(blogId: string, discussionId: number) {
+    this.firebase.deleteBlogDiscussion(blogId, discussionId);
   }
 }

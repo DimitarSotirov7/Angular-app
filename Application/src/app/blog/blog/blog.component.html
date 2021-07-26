@@ -46,7 +46,7 @@
                     <span>{{discussion.fullName}} said:</span>
                     <span *ngIf="!editDiscussionClicked">{{discussion.answer}}</span>
                     <span *ngIf="editDiscussionClicked">
-                        <form #bl="ngForm" (ngSubmit)="updateBlogDiscussion(discussion.uid, bl.value)">
+                        <form #bl="ngForm" (ngSubmit)="updateBlogDiscussion(discussion?.did, bl.value)">
                             <textarea class="blog-discussion" name="answer" [ngModel]="discussion.answer"></textarea>
                             <button *ngIf="editDiscussionClicked" class="edit" >Confirm edit</button>
                             <span class="validation-discussion" *ngIf="invalidDiscussionInput">Field is required!</span>
@@ -58,7 +58,7 @@
                     <button class="remove" (click)="removeDiscussionToggle()">Remove</button>
                     <span class="discussion-remove-alert" *ngIf="removeDiscussionClicked">
                         <span class="remove-alert">Are you sure?</span>
-                        <span class="remove-yes" (click)="deleteBlogDiscussion(discussion.uid)">Yes</span>
+                        <span class="remove-yes" (click)="deleteBlogDiscussion(discussion.did)">Yes</span>
                         <span class="remove-no" (click)="removeDiscussionToggle()">No</span>
                     </span>
                 </div>

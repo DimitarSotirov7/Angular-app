@@ -81,7 +81,7 @@ export class BlogComponent {
     this.editQuestionToggle();
   }
 
-  updateBlogDiscussion(discussionId: string, data: any) {
+  updateBlogDiscussion(discussionId: number, data: any) {
 
     if (data.answer === '') {
       this.invalidDiscussionInput = true;
@@ -102,6 +102,21 @@ export class BlogComponent {
     this.editDiscussionToggle();
   }
 
+  deleteBlogDiscussion(discussionId: number) {
+
+    this.blogService.deleteBlogDiscussion(this.blogId, discussionId);
+
+    this.editedDiscussion = true;
+    var interval = setInterval(() => {
+      this.editedDiscussion = false;
+      this.getBlogData();
+      clearInterval(interval);
+    }, 1000);
+    
+
+    this.removeDiscussionToggle();
+  }
+
   editQuestionToggle(): void {
     this.editQuestionClicked = !this.editQuestionClicked;
   }
@@ -118,10 +133,6 @@ export class BlogComponent {
     this.removeDiscussionClicked = !this.removeDiscussionClicked;
   }
 
-  deleteBlogDiscussion(discussionId: string) {
-    //TODO
-  }
-
   deleteBlogQuestion() {
     this.blogService.deleteBlogQuestion(this.blogId);
     this.route.navigateByUrl(`/blog/category/${this.blog.categoryName}`);
@@ -136,6 +147,7 @@ export class BlogComponent {
     }
 
     this.blogService.addBlogDiscussion(this.blogId, {
+      did: 0,
       uid: this.currUser.uid,
       fullName: this.currUser.fullName,
       answer: data.answer,

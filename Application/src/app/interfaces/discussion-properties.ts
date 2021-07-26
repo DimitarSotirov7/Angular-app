@@ -1,5 +1,5 @@
 export interface IDiscussionProperties {
-    // did: string,
+    did: number,
     uid: string,
     fullName: string,
     answer: string,

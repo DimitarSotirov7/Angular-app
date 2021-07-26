@@ -131,20 +131,21 @@ export class FirebaseService {
     this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
       blog = b.data();
       usersToAdd = blog?.users === undefined ? [] : blog?.users;
+      data.did = this.getBiggestDid(usersToAdd) + 1;
 
       usersToAdd.push(data);
       this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToAdd });
     });
   }
 
-  updateBlogDiscussion(blogId: string, discussionId: string, answer: string) {
+  updateBlogDiscussion(blogId: string, discussionId: number, answer: string) {
     let blog: any = {};
     let usersToUpdate: IDiscussionProperties[] = [];
     this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
       blog = b.data();
       usersToUpdate = blog?.users;
       usersToUpdate = usersToUpdate.map(disc => {
-        if (disc.uid === discussionId) {
+        if (disc.did === discussionId) {
           disc.answer = answer;
         }
         return disc;
@@ -152,4 +153,24 @@ export class FirebaseService {
       this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToUpdate });
     });
   }
+
+  deleteBlogDiscussion(blogId: string, discussionId: number) {
+    let blog: any = {};
+    let usersToUpdate: IDiscussionProperties[] = [];
+    this.firestore.collection(this.blogColl).doc(blogId).get().subscribe(b => {
+      blog = b.data();
+      usersToUpdate = blog?.users;
+      usersToUpdate = usersToUpdate.filter(disc => disc.did != discussionId);
+      this.firestore.collection(this.blogColl).doc(blogId).update({ users: usersToUpdate });
+    });
+  }
+
+  private getBiggestDid(discussions: IDiscussionProperties[]): number {
+
+    if (discussions.length === 0) {
+      return 0;
+    }
+
+    return discussions.sort((a, b) => { return b.did - a.did })[0].did;
+    }
 }

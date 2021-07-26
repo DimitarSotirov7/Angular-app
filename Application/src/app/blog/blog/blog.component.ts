@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BlogComponent {
 
-  
+
   @Input() blogQuestion: string = '';
 
   currUser: any = {
@@ -21,7 +21,7 @@ export class BlogComponent {
   };
   blog: any = {};
   blogId: string = this.getBlogIdFromRoute();
-  personalBlog: boolean = false;
+  personalBlogQuestion: boolean = false;
   addedBlogDiscussion: boolean = false;
   editedQuestion: boolean = false;
   editQuestionClicked: boolean = false;
@@ -38,9 +38,13 @@ export class BlogComponent {
 
   getBlogData() {
     this.blogService.getBlogData(this.blogId).get().subscribe(blog => {
+      if (blog.data() === undefined) {
+        this.route.navigateByUrl('not-found');
+      }
+
       this.blog = blog.data();
-      this.blogQuestion = this.blog.question;
-      (this.blog as IBlogProperties).users.sort((a, b) => { return b.did - a.did });
+      this.blogQuestion = this.blog?.question;
+      (this.blog as IBlogProperties)?.users.sort((a, b) => { return b.did - a.did });
 
       this.userService.authState.subscribe(u => {
         this.currUser.uid = u?.uid;
@@ -53,8 +57,8 @@ export class BlogComponent {
           this.currUser.fullName = u.data()?.firstName + ' ' + u.data()?.lastName;
         });
 
-        if (u?.uid === this.blog.createdByDoc) {
-          this.personalBlog = true;
+        if (u?.uid === this.blog?.createdByDoc) {
+          this.personalBlogQuestion = true;
         }
       });
     });
@@ -70,14 +74,14 @@ export class BlogComponent {
 
     this.blogService.updateBlogQuestion(this.blogId, data.question);
 
-    
+
     this.editedQuestion = true;
     var interval = setInterval(() => {
       this.editedQuestion = false;
       this.getBlogData();
       clearInterval(interval);
     }, 1000);
-    
+
     this.editQuestionToggle();
   }
 
@@ -89,7 +93,7 @@ export class BlogComponent {
       return;
     }
 
-    this.blogService.updateBlogDiscussion(this.blogId, discussionId, data.answer);    
+    this.blogService.updateBlogDiscussion(this.blogId, discussionId, data.answer);
 
     this.editDiscussionToggle(discussionId);
     var interval = setInterval(() => {
@@ -101,7 +105,7 @@ export class BlogComponent {
   deleteBlogDiscussion(discussionId: number) {
 
     this.blogService.deleteBlogDiscussion(this.blogId, discussionId);
-    
+
     this.removeDiscussionToggle(discussionId);
     var interval = setInterval(() => {
       this.getBlogData();

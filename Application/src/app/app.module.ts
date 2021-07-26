@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { CoreModule } from './core/core.module';
 import { UserService } from './services/user.service';
 import { UserModule } from './user/user.module';
@@ -23,7 +22,6 @@ import { BlogModule } from './blog/blog.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     SideBarComponent,
   ],
   imports: [

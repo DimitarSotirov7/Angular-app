@@ -19,5 +19,8 @@
                 <div class="blog-created-by">{{blog.data.createdByFullName}}</div>
             </li>
         </ul>
+        <div class="no-discussions" *ngIf="blogs?.length === 0">
+            Be the first one to add question.
+        </div>
     </article>
 </section>

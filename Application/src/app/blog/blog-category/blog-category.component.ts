@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IBlogProperties } from 'src/app/interfaces/blog-properties';
 import { BlogService } from 'src/app/services/blog.service';
 import { UserService } from 'src/app/services/user.service';
+import { blogCategoryNames } from 'src/app/interfaces/blog-category-names'
 
 @Component({
   selector: 'app-blog-category',
@@ -37,7 +38,10 @@ export class BlogCategoryComponent {
 
     if (data.question === '') {
       this.invalidInput = true;
-      setInterval(() => { this.invalidInput = false }, 1000);
+      var interval = setInterval(() => { 
+        this.invalidInput = false;
+        clearInterval(interval);
+      }, 1000);
       return;
     }
 
@@ -52,12 +56,22 @@ export class BlogCategoryComponent {
     this.getBlogsData();
     
     this.addedQuestion = true;
-    setInterval(() => { this.addedQuestion = false }, 1000);
+    var interval = setInterval(() => { 
+      this.addedQuestion = false 
+      data.question = '';
+      clearInterval(interval);
+    }, 1000);
   }
 
 
   private getBlogsData() {
+    
+    if (!blogCategoryNames.filter(c => c.name === this.categoryName).some(c => c.name)) {
+      this.route.navigateByUrl('not-found');
+    }
+
     this.blogService.getBlogsData().get().subscribe(blogColl => {
+      
       this.blogs = blogColl.docs.filter(blog => blog.data().categoryName === this.categoryName).reverse().map(blog => { 
         return { 
           data: blog.data(), 

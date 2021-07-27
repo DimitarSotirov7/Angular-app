@@ -5,5 +5,6 @@ export interface IBlogProperties {
     question: string,
     createdByDoc: string,
     createdByFullName: string, 
-    users: IDiscussionProperties[]
+    users: IDiscussionProperties[],
+    date: Date
 }

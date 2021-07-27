@@ -50,7 +50,8 @@ export class BlogCategoryComponent {
       question: data.question,
       createdByDoc: this.user.uid,
       createdByFullName: this.user.fullName,
-      users: []
+      users: [],
+      date: new Date()
     });
     
     this.getBlogsData();

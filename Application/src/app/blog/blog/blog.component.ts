@@ -43,6 +43,15 @@ export class BlogComponent {
       }
 
       this.blog = blog.data();
+      this.blog.date = this.toDateTime(this.blog.date.seconds);
+
+      // if (this.blog?.users) {
+      //   this.blog.users = (this.blog.users as [{date: string}]).map(d => {
+      //     d.date = this.toDateTime(d.date.seconds);
+      //     return d;
+      //   });
+      // }
+
       this.blogQuestion = this.blog?.question;
       (this.blog as IBlogProperties)?.users.sort((a, b) => { return b.did - a.did });
 
@@ -157,7 +166,7 @@ export class BlogComponent {
       uid: this.currUser.uid,
       fullName: this.currUser.fullName,
       answer: data.answer,
-      date: Date.now()
+      date: new Date()
     });
 
     this.addedBlogDiscussion = true;
@@ -172,5 +181,11 @@ export class BlogComponent {
   private getBlogIdFromRoute() {
     const index: number = this.route.url.lastIndexOf('/');
     return this.route.url.substring(index + 1);
+  }
+
+  private toDateTime(secs: number): string {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return `${t.getDate()}/${t.getMonth() + 1}/${t.getFullYear()}`;
   }
 }

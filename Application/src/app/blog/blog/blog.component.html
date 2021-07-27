@@ -21,6 +21,7 @@
             <span *ngIf="personalBlogQuestion" [routerLink]="['/profile/', blog.createdByDoc]"
                 class="personal">{{blog.createdByFullName}}</span>
             <span *ngIf="!personalBlogQuestion">{{blog.createdByFullName}}</span>
+            on {{blog.date}}
         </p>
     </section>
     <section class="blog-add-discution">

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent {
 
   loggedUser: boolean = false;
+  appName: string = environment.application.name;
 
   constructor(private userService: UserService) {
     this.userService.authState.subscribe(user => {

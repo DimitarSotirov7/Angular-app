@@ -43,7 +43,7 @@ export class BlogComponent {
       }
 
       this.blog = blog.data();
-      this.blog.date = this.toDateTime(this.blog.date.seconds);
+      this.blog.date = this.toDateTime(this.blog.date?.seconds);
 
       // if (this.blog?.users) {
       //   this.blog.users = (this.blog.users as [{date: string}]).map(d => {

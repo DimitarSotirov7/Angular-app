@@ -1,4 +1,7 @@
 export const environment = {
+  application: {
+    name: 'SanchoPanza'
+  },
   production: true,
   firebaseConfig: {
     apiKey: "AIzaSyBlpN9_G6sZ4jY-fzswsDM7lCUWoJ8bjh4",

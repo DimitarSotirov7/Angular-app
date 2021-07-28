@@ -1,4 +1,8 @@
 <section class="category">
+    <article class="category-title">
+        {{categoryName}}
+    </article>
+    <a class="back" routerLink="">&lt; Back to all categories</a>
     <article class="add-category">
         <form #f="ngForm" (ngSubmit)="addBlogQuestion(f.value)">
             <article class="content">

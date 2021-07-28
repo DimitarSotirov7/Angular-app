@@ -3,7 +3,7 @@
         <img src="../../assets/home-image.jpeg" alt="home-image">
     </article>
     <article class="welcome-message">
-        Welcome to the application
+        Welcome to {{appName}}
     </article>
 </section>
 <section class="container" *ngIf="loggedUser">
@@ -12,6 +12,5 @@
     </article>
     <article class="side-bar">
         <app-side-bar></app-side-bar>
-    </article>
-    
+    </article>  
 </section>

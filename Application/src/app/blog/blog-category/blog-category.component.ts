@@ -18,12 +18,12 @@ export class BlogCategoryComponent {
   categoryName: string = this.getCategoryNameFromRoute();
   blogs: any[] = [];
 
-  constructor(private blogService: BlogService, private userService: UserService, private route: Router) { 
+  constructor(private blogService: BlogService, private userService: UserService, private route: Router) {
     this.userService.authState.subscribe(u => {
       this.user.uid = u?.uid;
 
       if (!this.user.uid) {
-        return;
+        this.route.navigateByUrl('not-found');
       }
 
       this.userService.getUserData(this.user.uid).get().subscribe(u => {
@@ -38,7 +38,7 @@ export class BlogCategoryComponent {
 
     if (data.question === '') {
       this.invalidInput = true;
-      var interval = setInterval(() => { 
+      var interval = setInterval(() => {
         this.invalidInput = false;
         clearInterval(interval);
       }, 1000);
@@ -53,32 +53,40 @@ export class BlogCategoryComponent {
       users: [],
       date: new Date()
     });
-    
+
     this.getBlogsData();
-    
+
     this.addedQuestion = true;
-    var interval = setInterval(() => { 
-      this.addedQuestion = false 
+    var interval = setInterval(() => {
+      this.addedQuestion = false
       data.question = '';
       clearInterval(interval);
     }, 1000);
   }
 
+  onKeyUp(event: KeyboardEvent, data: IBlogProperties) {
+    if (event?.key === 'Enter') {
+      this.addBlogQuestion(data);
+    }
+  }
 
   private getBlogsData() {
-    
+
     if (!blogCategoryNames.filter(c => c.name === this.categoryName).some(c => c.name)) {
       this.route.navigateByUrl('not-found');
     }
 
     this.blogService.getBlogsData().get().subscribe(blogColl => {
-      
-      this.blogs = blogColl.docs.filter(blog => blog.data().categoryName === this.categoryName).reverse().map(blog => { 
-        return { 
-          data: blog.data(), 
-          id: blog.id 
-        }
-      });
+
+      this.blogs = blogColl.docs
+        .filter(blog => blog.data().categoryName === this.categoryName)
+        .sort((a, b) => b.data().date - a.data().date)
+        .map(blog => {
+          return {
+            data: blog.data(),
+            id: blog.id
+          }
+        });
     });
   }
 

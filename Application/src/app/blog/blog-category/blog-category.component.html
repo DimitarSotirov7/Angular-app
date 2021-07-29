@@ -8,7 +8,7 @@
             <article class="content">
                 <article class="key-value-pair">
                     <p class="user-key">Blog Question</p>
-                    <textarea  type="text" #questionInput class="user-value" name="question" ngModel required></textarea>
+                    <textarea  type="text" (keyup)="onKeyUp($event, f.value); $event.key === 'Enter' ? questionInput.value = '' : null" #questionInput class="user-value" name="question" ngModel required></textarea>
                     <div class="validation" *ngIf="invalidInput">Field is required!</div>
                 </article>
                 <button (click)="questionInput.value = ''">Add Question</button>
@@ -20,11 +20,11 @@
         <ul>
             <li class="blog" *ngFor="let blog of blogs" [routerLink]="['/blog/' + blog.id]">
                 <div class="blog-question">{{blog.data.question}}</div>
-                <div class="blog-created-by">{{blog.data.createdByFullName}}</div>
+                <div class="blog-created-by">By {{blog.data.createdByFullName}}</div>
             </li>
         </ul>
         <div class="no-discussions" *ngIf="blogs?.length === 0">
-            Be the first one to add question.
+            Be the first to add a question.
         </div>
     </article>
 </section>

@@ -53,7 +53,7 @@ export class BlogComponent {
       // }
 
       this.blogQuestion = this.blog?.question;
-      (this.blog as IBlogProperties)?.users.sort((a, b) => { return b.did - a.did });
+      (this.blog as IBlogProperties)?.users.sort((a, b) => b.did - a.did );
 
       this.userService.authState.subscribe(u => {
         this.currUser.uid = u?.uid;
@@ -176,6 +176,12 @@ export class BlogComponent {
       data.answer = '';
       clearInterval(interval);
     }, 1000);
+  }
+
+  onKeyUp(event: KeyboardEvent, data: IDiscussionProperties) {
+    if (event?.key === 'Enter') {
+      this.addBlogDiscussion(data);
+    }
   }
 
   private getBlogIdFromRoute() {

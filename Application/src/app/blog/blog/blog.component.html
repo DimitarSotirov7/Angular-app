@@ -28,7 +28,7 @@
         <form #disc="ngForm" (ngSubmit)="addBlogDiscussion(disc.value)">
             <article class="content">
                 <article class="content-input">
-                    <textarea type="text" #answerInput class="user-value" name="answer" ngModel required></textarea>
+                    <textarea type="text" #answerInput class="user-value" (keyup)="onKeyUp($event, disc.value); $event.key === 'Enter' ? answerInput.value = '' : null" name="answer" ngModel required></textarea>
                 </article>
                 <article class="content-button">
                     <button (click)="answerInput.value = ''">Add Discussion</button>
@@ -66,7 +66,7 @@
             </li>
         </ul>
         <div class="no-discussions" *ngIf="blog.users?.length === 0">
-            Be the first one to add discussion.
+            Be the first to add a discussion.
         </div>
     </section>
 </div>

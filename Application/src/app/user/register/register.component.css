@@ -193,3 +193,12 @@ button:active {
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
 }
+
+@media screen and (max-width: 400px) {
+  .register {
+    width: 70vw;
+  }
+  .register input[type=text], .register input[type=password] {
+    width: 90%;
+  }
+}

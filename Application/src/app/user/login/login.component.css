@@ -1,5 +1,4 @@
-HTML CSSResult Skip Results Iframe
-EDIT ON
+HTML CSSResult Skip Results Iframe EDIT ON
 /*
  * Copyright (c) 2012 Thibaut Courouble
  * http://www.cssflow.com
@@ -192,4 +191,13 @@ button:active {
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
+}
+
+@media screen and (max-width: 400px) {
+  .login {
+    width: 70vw;
+  }
+  .login input[type=text], .login input[type=password] {
+    width: 90%;
+  }
 }

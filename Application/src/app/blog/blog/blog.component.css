@@ -11,6 +11,10 @@ button:hover {
     cursor: pointer;
 }
 
+.content-button button:last-child {
+    display:none;
+}
+
 .blog-title {
     text-align: center;
     background-color: lightblue;
@@ -180,4 +184,53 @@ ul {
 
 .no-discussions {
     color: black;
+}
+
+.blog-discution > ul > li > div > span > form  {
+    display: flex;
+}
+
+@media screen and (max-width: 900px) {
+    .blog-question {
+        font-size: 1.3em;
+    }
+    .blog-discution ul li div span {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .blog-question {
+        font-size: 1.0em;
+    }
+    .blog-discution ul li div span {
+        font-size: 1.0em;
+    }
+    .created-by {
+        font-size: 0.7em;
+    }
+    .category-name {
+        font-size: 1.0em;
+    }
+    .category-name a{
+        font-size: 1.2em;
+    }
+    
+    .blog-add-discution form .content article textarea {
+        height: 35px;
+    }
+    .blog-add-discution form .content article button {
+        height: 35px;
+        padding: 5px;
+        margin-top: 3px;
+    }
+    .content-button button:first-child {
+        display:none;
+    }
+    .content-button button:last-child {
+        display:block;
+    }
+    .content-successful p {
+        margin: 0;
+    }
 }

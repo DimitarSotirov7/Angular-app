@@ -80,8 +80,27 @@
     box-shadow: 0 2px 2px 2px rgb(188, 223, 255);
 }
 
-@media screen and (max-width: 743px) {
-    .nav .nav-items a {
+@media screen and (max-width: 600px) {
+    .nav {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 280px) {
+
+    .nav {
+        justify-content: center;
+    }
+
+    .logo {
         display: none;
+    }
+
+    .nav-items {
+        margin-bottom: 10px;
+    }
+
+    .profile {
+        padding-bottom: 15px;
     }
 }

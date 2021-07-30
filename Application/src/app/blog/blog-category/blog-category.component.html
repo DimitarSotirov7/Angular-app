@@ -2,7 +2,8 @@
     <article class="category-title">
         {{categoryName}}
     </article>
-    <a class="back" routerLink="">&lt; Back to all categories</a>
+    <a class="back" routerLink="">&lt; Back to categories</a>
+    <a class="back-short" routerLink="">&lt; Back</a>
     <article class="add-category">
         <form #f="ngForm" (ngSubmit)="addBlogQuestion(f.value)">
             <article class="content">

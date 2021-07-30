@@ -39,3 +39,41 @@
 .side-bar {
     justify-content: flex-end;
 }
+
+@media screen and (max-width: 900px) {
+    .container {
+        flex-direction: column-reverse;
+    }
+
+    .container article {
+        display: block;
+        margin-top: 5%;
+        width: 90vw;
+    }
+
+    .container .image-wrapper img {
+        justify-content: center;
+        margin-left: 27%;
+    }
+
+    .welcome-message {
+        text-align: center;
+        padding-top: 1%;
+        margin-left: 7%;
+    }
+
+    .image-wrapper-logged img {
+        display: none;
+    }
+
+    .blog-categories {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .welcome-message {
+        font-size: 0.99em;
+    }
+}

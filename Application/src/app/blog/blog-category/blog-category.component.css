@@ -6,14 +6,18 @@
     text-shadow: 3px 3px rgb(174, 223, 255);
 }
 
-.back {
+.back, .back-short {
     margin-left: 20px;
     padding: 5px;
     background-color: rgb(47, 172, 255);
     color: white;
     border-radius: 5px;
     text-decoration: none;
-} 
+}
+
+.back-short {
+    display: none;
+}
 
 .back:hover {
     font-size: 1.1em;
@@ -86,7 +90,7 @@ ul {
     min-width: 400px;
 }
 
-.blog:hover{
+.blog:hover {
     cursor: pointer;
     background-color: rgb(170, 215, 245);
 }
@@ -103,4 +107,41 @@ ul {
 
 .no-discussions {
     text-align: center;
+}
+
+@media screen and (max-width: 720px) {
+    .key-value-pair textarea {
+        width: 80%;
+    }
+    .existing-blogs ul {
+        padding-left: 0;
+    }
+    .existing-blogs ul li {
+        margin: 10px 10%;
+    }
+    .back-short {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .existing-blogs {
+        margin: 0;
+        justify-content: center;
+    }
+    .blog-question {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .blog {
+        min-width: 200px;
+    }
+    .back {
+        display: none;
+    }
+    .back-short {
+        display: inline-block;
+    }
 }

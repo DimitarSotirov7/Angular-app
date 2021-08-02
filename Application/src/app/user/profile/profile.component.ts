@@ -25,7 +25,7 @@ export class ProfileComponent {
 
     userService.authState.subscribe(u => {
       if (!u?.uid) {
-        route.navigateByUrl('');
+        route.navigateByUrl('/login');
       }
     });
 
@@ -46,6 +46,7 @@ export class ProfileComponent {
 
   saveChanges(data: IUserProperties) {
     this.userService.setUserData(this.user.uid, data);
+    //view purposes
     this.user.firstName = data?.firstName !== '' ? data?.firstName : this.user.firstName;
     this.user.lastName = data?.lastName !== '' ? data?.lastName : this.user.lastName;
 

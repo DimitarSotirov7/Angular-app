@@ -22,6 +22,7 @@ export class FirebaseService {
     lastName: '',
     age: '',
     location: '',
+    isAdmin: false
   };
   authState: Observable<any> = this.fireAuth.authState;
 
@@ -45,12 +46,19 @@ export class FirebaseService {
 
   // ---------------- Firestore - users ---------------- 
 
-  addUserFirestore(doc: string, userProperties: IFormValues): void {
-    this.firestore.collection(this.userColl).doc(doc).set({
+  addUserFirestore(doc: string, userProperties: IFormValues): Promise<void> {
+
+    let admin = false;
+    if (userProperties.email === environment.admin.email) {
+      admin = true;
+    }
+    console.log('firebase.service -> admin: ', admin);
+    return this.firestore.collection(this.userColl).doc(doc).set({
       firstName: userProperties.firstName,
       lastName: userProperties.lastName,
       age: '',
       location: '',
+      isAdmin: admin
     } as IUserProperties);
   }
 
@@ -59,6 +67,8 @@ export class FirebaseService {
   }
 
   setUserFirestore(doc: string, data: IUserProperties): void {
+    console.log('firebase.service -> doc: ', doc);
+    console.log('firebase.service -> data: ', data);
     if (data.firstName !== '') {
       this.firestore.collection(this.userColl).doc(doc).update({ firstName: data?.firstName });
     }

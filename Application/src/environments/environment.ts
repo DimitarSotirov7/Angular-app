@@ -17,7 +17,7 @@ export const environment = {
     measurementId: "G-TD3G7GL00R"
   },
   admin: {
-    email: 'admin@admin.admin',
+    email: 'sotirov.admin@gmail.com',
   }
 };
 

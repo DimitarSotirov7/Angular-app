@@ -17,7 +17,8 @@ export class BlogComponent {
 
   currUser: any = {
     uid: '',
-    fullName: ''
+    fullName: '',
+    isAdmin: false
   };
   blog: any = {};
   blogId: string = this.getBlogIdFromRoute();
@@ -59,11 +60,19 @@ export class BlogComponent {
         this.currUser.uid = u?.uid;
 
         if (!this.currUser.uid) {
-          return;
+          this.route.navigateByUrl('/login');
         }
 
         this.userService.getUserData(this.currUser.uid).get().subscribe(u => {
+          this.currUser.isAdmin = u.data()?.isAdmin;
+        });
+
+        this.userService.getUserData(this.currUser.uid).get().subscribe(u => {
           this.currUser.fullName = u.data()?.firstName + ' ' + u.data()?.lastName;
+
+          if (u?.data()?.isAdmin === true) {
+            this.personalBlogQuestion = true;
+          }
         });
 
         if (u?.uid === this.blog?.createdByDoc) {

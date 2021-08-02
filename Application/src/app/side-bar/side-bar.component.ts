@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IBlogCategoriesProperties } from '../interfaces/blog-categories-properties';
 import { BlogService } from '../services/blog.service';
 
 @Component({

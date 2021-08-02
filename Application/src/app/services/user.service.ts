@@ -11,13 +11,13 @@ export class UserService {
 
   logged: EventEmitter<boolean> = new EventEmitter();
   invalid: EventEmitter<string> = new EventEmitter();
-  authState:Observable<any> = this.firebase.authState;
+  authState: Observable<any> = this.firebase.authState;
 
   get isLogged() {
     return this.storageService.getItem('isLogged');
   }
 
-  constructor(private storageService: StorageService, private firebase: FirebaseService) {}
+  constructor(private storageService: StorageService, private firebase: FirebaseService) { }
 
   login(formValues: IFormValues): void {
     if (formValues.email === '' || formValues.password === '') {
@@ -45,23 +45,24 @@ export class UserService {
     if (formValues.email === '' || formValues.password === '' || formValues.firstName === '' || formValues.lastName === '') {
       return;
     }
-    const register = this.firebase.register(formValues);
-    register.then(res => {
-      //emit event the user is logged
-      this.logged.emit(true);
+    this.firebase.register(formValues)
+      .then(res => {
+        //emit event the user is logged
+        this.logged.emit(true);
 
-      this.storageService.setItem('isLogged', true);
+        this.storageService.setItem('isLogged', true);
 
-      //Add data for the new user
-      this.authState.subscribe(user => {
-        this.firebase.addUserFirestore(user?.uid, formValues);
+        //Add data for the new user
+        this.authState.subscribe(user => {
+          const result = this.firebase.addUserFirestore(user?.uid, formValues);
+          console.log('user.service -> add user in firestore', result);
+        });
+      }).catch(err => {
+        this.invalid.emit(err.message);
       });
-    }).catch(err => {
-      this.invalid.emit(err.message);
-    });
   }
-  
-  getUserData(uid: string):AngularFirestoreDocument {
+
+  getUserData(uid: string): AngularFirestoreDocument {
     return this.firebase.getUserData(uid);
   }
 

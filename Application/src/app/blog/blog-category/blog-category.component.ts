@@ -23,7 +23,7 @@ export class BlogCategoryComponent {
       this.user.uid = u?.uid;
 
       if (!this.user.uid) {
-        this.route.navigateByUrl('not-found');
+        this.route.navigateByUrl('/login');
       }
 
       this.userService.getUserData(this.user.uid).get().subscribe(u => {

@@ -3,4 +3,5 @@ export interface IUserProperties {
     lastName: string,
     age: string,
     location: string,
+    isAdmin: boolean
 }

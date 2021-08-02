@@ -55,7 +55,7 @@
                         </form>
                     </span>
                 </div>
-                <div class="change" *ngIf="currUser.uid === discussion.uid">
+                <div class="change" *ngIf="currUser.uid === discussion.uid || currUser.isAdmin">
                     <button class="edit" (click)="editDiscussionToggle(discussion.did)">Edit</button>
                     <button class="remove" (click)="removeDiscussionToggle(discussion.did)">Remove</button>
                     <span class="discussion-remove-alert" *ngIf="clickedRemoveDiscussion !== 0 && clickedRemoveDiscussion === discussion.did">

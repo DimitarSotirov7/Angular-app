@@ -4,7 +4,7 @@ Hosting: https://angular-app-fb611.web.app/
 
 Pages for No logged user:
   - [Home](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/home)
-  - Recent Posts
+  - [Recent Posts](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/blog/recent-blogs)
   - [Login](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/user/login)
   - [Register](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/user/register)
   

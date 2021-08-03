@@ -7,6 +7,7 @@ Pages for No logged user:
   - Recent Posts
   - Login
   - Register
+  
 Pages for logged user:
   - Home
   - Profile

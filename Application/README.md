@@ -1,27 +1,22 @@
-# Application
+Sancho Panza is an angular SPA using firebase as a server side. It's a blog site where you can add your blog question and other users can discuss it. There's a "no logged user" page with all the blogs listed for review and they can be filtered by category and records displayed.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+Hosting: https://angular-app-fb611.web.app/
 
-## Development server
+Pages:
+  No logged user:
+    - Home
+    - Recent Posts
+    - Login
+    - Register
+  Logged user:
+    - Home
+    - Profile
+    - Blogs in selected category
+    - Selected blog and discussions
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Firebase authentication: register the users with email and password.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Forestore Models:
+  - blogCategories: seed when the admin is logged.
+  - blogs: includes the discussions.
+  - users: more information about the user.    

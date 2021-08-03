@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="options">
+        <div class="category">
+            <label for="Category">Category:</label>
+            <select [(ngModel)]="selectedCategory" (change)="filter()" name="category" id="category">
+                <option value="All" >All</option>
+                <option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                </option>
+            </select>
+        </div>
+        <div class="counts">
+            <label for="Count">Records:</label>
+            <select [(ngModel)]="selectedRecords" (change)="filter()" name="records" id="records">
+                <option *ngFor="let count of records" [value]="count">
+                    {{count}}
+                </option>
+            </select>
+        </div>
+    </div>     
+    <ul class="existing-blogs">
+        <li class="blog" *ngFor="let blog of filteredBlogs">
+            <div class="category-name">category: {{blog.categoryName}}</div>
+            <div class="blog-question">{{blog.question}}</div>
+            <div class="blog-created-by">By {{blog.createdByFullName}} on {{blog.date}}</div>
+        </li>
+    </ul>
+</div>

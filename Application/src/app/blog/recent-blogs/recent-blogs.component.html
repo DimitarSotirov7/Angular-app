@@ -2,7 +2,7 @@
     <div class="options">
         <div class="category">
             <label for="Category">Category:</label>
-            <select [(ngModel)]="selectedCategory" (change)="filterCategories(selectedCategory)" name="category" id="category">
+            <select [(ngModel)]="selectedCategory" (change)="filter()" name="category" id="category">
                 <option value="All" >All</option>
                 <option *ngFor="let category of categories" [value]="category">
                     {{category}}
@@ -11,8 +11,8 @@
         </div>
         <div class="counts">
             <label for="Count">Records:</label>
-            <select [(ngModel)]="counts[0]" (change)="filterCounts(counts[0])" name="counts" id="counts">
-                <option *ngFor="let count of counts" [value]="count">
+            <select [(ngModel)]="selectedRecords" (change)="filter()" name="records" id="records">
+                <option *ngFor="let count of records" [value]="count">
                     {{count}}
                 </option>
             </select>

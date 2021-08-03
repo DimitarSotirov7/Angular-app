@@ -13,29 +13,13 @@ export class RecentBlogsComponent {
 
   blogs: DocumentData[] = [];
   filteredBlogs: DocumentData[] = [];
-  categories: string[] = []; 
+  categories: string[] = [];
   selectedCategory: string = 'All';
-
-  counts: number[] = [
-    5, 10, 15, 20, 25, 30
-  ];
+  selectedRecords: number = 0;
+  records: number[] = [];
 
   constructor(private blogService: BlogService) {
     this.getBlogs();
-  }
-
-  filterCategories(selectedCategory: string) {
-
-    if (selectedCategory !== 'All' && selectedCategory) {
-      this.filteredBlogs = this.blogs.filter(b => b.categoryName === selectedCategory);
-    } else {
-      this.filteredBlogs = this.blogs;
-    }
-  }
-
-  filterCounts(count: number) {
-    this.filteredBlogs = this.blogs.slice(0, count);
-    console.log(this.filteredBlogs.length)
   }
 
   private getBlogs() {
@@ -58,7 +42,36 @@ export class RecentBlogsComponent {
       });
 
       this.filteredBlogs = this.blogs;
+      this.insertRecordsOptions(this.filteredBlogs.length);
     });
+  }
+
+  filter(): void {
+
+    if (this.selectedCategory !== "All") {
+      this.filteredBlogs = this.filteredBlogs.filter(b => b.categoryName === this.selectedCategory);
+    } else {
+      this.filteredBlogs = this.blogs;
+    }
+
+    if (this.filteredBlogs.length < this.selectedRecords) {
+      console.log('greater count');
+      this.filteredBlogs = this.blogs.filter(b => b.categoryName === this.selectedCategory).slice(0, this.selectedRecords);
+    } else {
+      this.filteredBlogs = this.filteredBlogs.slice(0, this.selectedRecords);
+    }
+  }
+
+  private insertRecordsOptions(length: number) {
+
+    this.selectedRecords = length;
+
+    for (let i = 1; i <= 3; i++) {
+      let record = Math.trunc(i === 1 ? length : (length + 1) / i);
+      if (!this.records.includes(record)) {
+        this.records.push(record);
+      }
+    }
   }
 
   private toDateTime(secs: number): string {

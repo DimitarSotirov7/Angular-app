@@ -16,7 +16,7 @@ Pages for logged user:
 
 Firebase authentication: register the users with email and password.
 
-Forestore Models:
+Firestore Models:
   - blogCategories: seed when the admin is logged.
   - blogs: includes the discussions.
   - users: more information about the user.   

@@ -3,15 +3,15 @@ Sancho Panza is an angular SPA using firebase as a server side. It's a blog site
 Hosting: https://angular-app-fb611.web.app/
 
 Pages for No logged user:
-    - Home
-    - Recent Posts
-    - Login
-    - Register
+  - Home
+  - Recent Posts
+  - Login
+  - Register
 Pages for logged user:
-    - Home
-    - Profile
-    - Blogs in selected category
-    - Selected blog and discussions
+  - Home
+  - Profile
+  - Blogs in selected category
+  - Selected blog and discussions
 
 Firebase authentication: register the users with email and password.
 

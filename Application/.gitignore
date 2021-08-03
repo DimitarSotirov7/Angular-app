@@ -63,4 +63,5 @@ node_modules/
 .yarn-integrity
 
 # dotenv environment variables file
+\Application\src\environments\environment.prod.ts
 .env

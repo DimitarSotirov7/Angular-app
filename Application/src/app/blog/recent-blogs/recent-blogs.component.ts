@@ -55,7 +55,6 @@ export class RecentBlogsComponent {
     }
 
     if (this.filteredBlogs.length < this.selectedRecords) {
-      console.log('greater count');
       this.filteredBlogs = this.blogs.filter(b => b.categoryName === this.selectedCategory).slice(0, this.selectedRecords);
     } else {
       this.filteredBlogs = this.filteredBlogs.slice(0, this.selectedRecords);

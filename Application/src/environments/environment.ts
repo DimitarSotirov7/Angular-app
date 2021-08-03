@@ -4,7 +4,7 @@
 
 export const environment = {
   application: {
-    name: 'SanchoPanza'
+    name: 'Sancho Panza'
   },
   production: false,
   firebaseConfig: {

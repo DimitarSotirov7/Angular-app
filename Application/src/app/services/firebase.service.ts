@@ -53,7 +53,6 @@ export class FirebaseService {
     if (userProperties.email === environment.admin.email) {
       admin = true;
     }
-    console.log('firebase.service -> admin: ', admin);
     return this.firestore.collection(this.userColl).doc(doc).set({
       firstName: userProperties.firstName,
       lastName: userProperties.lastName,

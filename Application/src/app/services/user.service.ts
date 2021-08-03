@@ -42,9 +42,17 @@ export class UserService {
   }
 
   register(formValues: IFormValues): void {
-    if (formValues.email === '' || formValues.password === '' || formValues.firstName === '' || formValues.lastName === '') {
+    if (formValues.email === '' || formValues.password === '' ||
+      formValues.firstName === '' || formValues.lastName === '') {
+      this.invalid.emit('An empty input found');
       return;
     }
+
+    if (formValues.password !== formValues.rePassword) {
+      this.invalid.emit('Password must be equal to Re-password');
+      return;
+    }
+
     this.firebase.register(formValues)
       .then(res => {
         //emit event the user is logged
@@ -54,8 +62,7 @@ export class UserService {
 
         //Add data for the new user
         this.authState.subscribe(user => {
-          const result = this.firebase.addUserFirestore(user?.uid, formValues);
-          console.log('user.service -> add user in firestore', result);
+          this.firebase.addUserFirestore(user?.uid, formValues);
         });
       }).catch(err => {
         this.invalid.emit(err.message);
@@ -74,7 +81,7 @@ export class UserService {
     // if (rememberMe) {
     //   this.storageService.setItem('isLogged', true);
     // }
-    
+
     //always true
     this.storageService.setItem('isLogged', true);
   }

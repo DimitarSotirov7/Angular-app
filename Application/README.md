@@ -3,16 +3,16 @@ Sancho Panza is an angular SPA using firebase as a server side. It's a blog site
 Hosting: https://angular-app-fb611.web.app/
 
 Pages for No logged user:
-  - Home
+  - [Home](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/home)
   - Recent Posts
-  - Login
-  - Register
+  - [Login](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/user/login)
+  - [Register](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/user/register)
   
 Pages for logged user:
-  - Home
-  - Profile
-  - Blogs in selected category
-  - Selected blog and discussions
+  - [Home](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/home)
+  - [Profile](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/user/profile)
+  - [Blogs in selected category](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/blog/blog-category)
+  - [Selected blog and discussions](https://github.com/DimitarSotirov7/Angular-app/tree/main/Application/src/app/blog/blog)
 
 Firebase authentication: register the users with email and password.
 

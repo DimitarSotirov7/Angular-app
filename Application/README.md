@@ -22,7 +22,7 @@ Forestore Models:
   - users: more information about the user.   
 
 The business logic is separated in 4 services.
-  - BlogService: related to all the blog operations and depends on firebase service only.
-  - FirebaseService: related to firebase only and depends on firebase internal services.
-  - StorageService: related to the browser local storage without any dependencies.
-  - UserService: related to the user authentication and depends on firebase service and storage service.
+  - [BlogService](https://github.com/DimitarSotirov7/Angular-app/blob/main/Application/src/app/services/blog.service.ts): related to all the blog operations and depends on firebase service only.
+  - [FirebaseService](https://github.com/DimitarSotirov7/Angular-app/blob/main/Application/src/app/services/firebase.service.ts): related to firebase only and depends on firebase internal services.
+  - [StorageService](https://github.com/DimitarSotirov7/Angular-app/blob/main/Application/src/app/services/storage.service.ts): related to the browser local storage without any dependencies.
+  - [UserService](https://github.com/DimitarSotirov7/Angular-app/blob/main/Application/src/app/services/user.service.ts): related to the user authentication and depends on firebase service and storage service.

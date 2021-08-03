@@ -1,2 +1,1 @@
-# Angular-app
-An angular application
+Please enter the Application directory to see more information about the app.

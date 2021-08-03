@@ -17,7 +17,6 @@ import { FirebaseService } from './services/firebase.service';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { BlogService } from './services/blog.service';
 import { BlogModule } from './blog/blog.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,8 +33,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     CoreModule,
     UserModule,
-    BlogModule,
-    NoopAnimationsModule
+    BlogModule
   ],
   providers: [
     UserService,

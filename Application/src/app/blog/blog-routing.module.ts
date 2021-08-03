@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { BlogCategoryComponent } from './blog-category/blog-category.component';
 import { BlogComponent } from './blog/blog.component';
+import { RecentBlogsComponent } from './recent-blogs/recent-blogs.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: 'blog/:id',
     pathMatch: 'full',
     component: BlogComponent
+  },
+  {
+    path: 'recent-blogs',
+    pathMatch: 'full',
+    component: RecentBlogsComponent
   }
 ];
 

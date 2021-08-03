@@ -32,6 +32,10 @@
     max-height: 100%;
 }
 
+.recent-short {
+    display: none;
+}
+
 .nav .nav-items {
     display: flex;
     padding-top: 10px;
@@ -86,7 +90,22 @@
     }
 }
 
-@media screen and (max-width: 280px) {
+@media screen and (max-width: 400px) {
+    .recent {
+        display: none;
+    }
+
+    .recent-short {
+        display: block;
+    }
+
+    .nav .nav-items a {
+        margin: 0 3px;
+    }
+}
+
+
+@media screen and (max-width: 310px) {
 
     .nav {
         justify-content: center;

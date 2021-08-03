@@ -9,6 +9,7 @@ import { blogCategoryNames } from '../interfaces/blog-category-names';
 import { IBlogCategoriesProperties } from '../interfaces/blog-categories-properties';
 import { environment } from '../../environments/environment';
 import { IDiscussionProperties } from '../interfaces/discussion-properties';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class FirebaseService {
@@ -26,7 +27,7 @@ export class FirebaseService {
   };
   authState: Observable<any> = this.fireAuth.authState;
 
-  constructor(private fireAuth: AngularFireAuth, private firestore: AngularFirestore) {
+  constructor(private fireAuth: AngularFireAuth, private firestore: AngularFirestore, private storageService: StorageService) {
     this.blogCategoriesFirestoreSeeder();
   }
 

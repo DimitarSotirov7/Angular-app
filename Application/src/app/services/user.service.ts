@@ -23,13 +23,13 @@ export class UserService {
     if (formValues.email === '' || formValues.password === '') {
       return;
     }
-    const login = this.firebase.login(formValues);
-    login.then(res => {
-      this.logged.emit(true);
-      this.storageService.setItem('isLogged', true);
-    }).catch(err => {
-      this.invalid.emit(err.message);
-    });
+    this.firebase.login(formValues)
+      .then(res => {
+        this.logged.emit(true);
+        this.rememberMe(formValues.rememberMe);
+      }).catch(err => {
+        this.invalid.emit(err.message);
+      });
   }
 
   logout(): void {
@@ -50,7 +50,7 @@ export class UserService {
         //emit event the user is logged
         this.logged.emit(true);
 
-        this.storageService.setItem('isLogged', true);
+        this.rememberMe(formValues.rememberMe);
 
         //Add data for the new user
         this.authState.subscribe(user => {
@@ -68,5 +68,14 @@ export class UserService {
 
   setUserData(doc: string, data: IUserProperties) {
     return this.firebase.setUserFirestore(doc, data);
+  }
+
+  private rememberMe(rememberMe: boolean) {
+    // if (rememberMe) {
+    //   this.storageService.setItem('isLogged', true);
+    // }
+    
+    //always true
+    this.storageService.setItem('isLogged', true);
   }
 }

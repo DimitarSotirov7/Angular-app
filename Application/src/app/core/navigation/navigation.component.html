@@ -2,9 +2,11 @@
     <div class="logo" routerLink="/">
         <img src="../../../assets/logo-2.png" alt="logo">
     </div>
-    <div class="nav-items">
-        <a *ngIf="!isLogged" routerLink="/login">Login</a>
-        <a *ngIf="!isLogged" routerLink="/register">Register</a>
+    <div *ngIf="!isLogged" class="nav-items">
+        <a routerLink="/recent-blogs" class="recent">Recent Blogs</a>
+        <a routerLink="/recent-blogs" class="recent-short">Recent</a>
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
     </div>
     <div *ngIf="isLogged" class="profile">
         <a [routerLink]="['/profile', uid]">{{icon}}</a>

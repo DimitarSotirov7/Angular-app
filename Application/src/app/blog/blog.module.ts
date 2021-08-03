@@ -4,13 +4,13 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogCategoryComponent } from './blog-category/blog-category.component';
 import { FormsModule } from '@angular/forms';
 import { BlogRoutingModule } from './blog-routing.module';
-
-
+import { RecentBlogsComponent } from './recent-blogs/recent-blogs.component';
 
 @NgModule({
   declarations: [
     BlogComponent,
-    BlogCategoryComponent
+    BlogCategoryComponent,
+    RecentBlogsComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +19,8 @@ import { BlogRoutingModule } from './blog-routing.module';
   ],
   exports: [
     BlogComponent,
-    BlogCategoryComponent
+    BlogCategoryComponent,
+    RecentBlogsComponent
   ]
 })
 export class BlogModule { }

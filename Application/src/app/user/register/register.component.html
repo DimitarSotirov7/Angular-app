@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <div class="register">
     <h1>Register to Web App</h1>
     <form #f="ngForm" (ngSubmit)="register(f.value)">
@@ -5,11 +6,19 @@
         <div class="validation" *ngIf="emailInput.errors?.required && emailInput.touched">Email is required!</div>
         <div class="validation" *ngIf="emailInput.errors?.email && emailInput.touched">Email is invalid!</div>
         
-        <p><input #passwordInput="ngModel" type="password" name="password" placeholder="Password" ngModel required minlength="6"></p>
+        <p class="password-wrapper">
+            <input #passwordElement #passwordInput="ngModel" type="password" name="password" placeholder="Password" ngModel required minlength="6">
+            <i *ngIf="passwordType" (click)="eyeToggle(passwordElement, 'text')" class="far fa-eye-slash"></i>
+            <i *ngIf="!passwordType" (click)="eyeToggle(passwordElement, 'password')" class="far fa-eye"></i>
+        </p>
         <div class="validation" *ngIf="passwordInput.errors?.required && passwordInput.touched">Password is required!</div>
         <div class="validation" *ngIf="passwordInput.errors?.minlength && passwordInput.touched">Password must contain at least 6 characters!</div>
         
-        <p><input #rePasswordInput="ngModel" type="password" name="rePassword" placeholder="Re-password" ngModel required minlength="6"></p>
+        <p class="password-wrapper">
+            <input #rePasswordElement #rePasswordInput="ngModel" type="password" name="rePassword" placeholder="Re-password" ngModel required minlength="6">
+            <i *ngIf="rePasswordType" (click)="eyeToggle(rePasswordElement, 'text')" class="far fa-eye-slash"></i>
+            <i *ngIf="!rePasswordType" (click)="eyeToggle(rePasswordElement, 'password')" class="far fa-eye"></i>
+        </p>
         <div class="validation" *ngIf="rePasswordInput.errors?.required && rePasswordInput.touched">Re-password is required!</div>
         <div class="validation" *ngIf="rePasswordInput.errors?.minlength && rePasswordInput.touched">Re-password must contain at least 6 characters!</div>
 

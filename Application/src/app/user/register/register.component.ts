@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { IFormValues } from 'src/app/interfaces/form-values';
@@ -13,6 +13,8 @@ export class RegisterComponent {
   
   subsciptions: Subscription[] = [];
   invalidRegisterMessage: string = '';
+  passwordType: boolean = true;
+  rePasswordType: boolean = true;
 
   constructor(private userService: UserService, route: Router) {
     userService.authState.subscribe(u => {
@@ -28,5 +30,14 @@ export class RegisterComponent {
 
   register(formValues: IFormValues): void {
     this.userService.register(formValues)
+  }
+
+  eyeToggle(input: any, passwordType: string) {
+    if (input.name === 'password') {
+      this.passwordType = passwordType === 'password' ? true : false;
+    } else {
+      this.rePasswordType = passwordType === 'password' ? true : false;
+    } 
+    input.type = passwordType;
   }
 }

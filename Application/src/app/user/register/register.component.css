@@ -1,3 +1,4 @@
+
 HTML CSSResult Skip Results Iframe
 EDIT ON
 /*
@@ -62,7 +63,7 @@ body {
 }
 
 .register p {
-  margin: 20px 0 0;
+  margin-top: 20px;
 }
 
 .register p:first-child {
@@ -94,23 +95,6 @@ body {
 .register p {
   text-align: right;
 }
-
-/* .register-help {
-  margin: 20px 0;
-  font-size: 11px;
-  color: white;
-  text-align: center;
-  text-shadow: 0 1px #2a85a1;
-}
-
-.register-help a {
-  color: #cce7fa;
-  text-decoration: none;
-}
-
-.register-help a:hover {
-  text-decoration: underline;
-} */
 
 :-moz-placeholder {
   color: #c9c9c9 !important;
@@ -192,6 +176,21 @@ button:active {
 
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
+}
+
+.password-wrapper {
+  margin-bottom: -15px;
+}
+
+.password-wrapper .far {
+  position: relative;
+  bottom: 30px;
+  right: 20px;
+  cursor: pointer;
+}
+
+p.password-wrapper .fa-eye {
+  right: 20px;
 }
 
 @media screen and (max-width: 400px) {

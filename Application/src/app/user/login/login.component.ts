@@ -13,6 +13,7 @@ export class LoginComponent {
 
   subsciptions: Subscription[] = [];
   invalidLoginMessage: string = '';
+  passwordType: boolean = true;
 
   constructor(private userService: UserService, route: Router) {
 
@@ -29,5 +30,13 @@ export class LoginComponent {
 
   login(formValues: IFormValues): void {
     this.userService.login(formValues)
+  }
+
+  eyeToggle(input: any, passwordType: string) {
+    if (input.name === 'password') {
+      this.passwordType = passwordType === 'password' ? true : false;
+    }
+    
+    input.type = passwordType;
   }
 }

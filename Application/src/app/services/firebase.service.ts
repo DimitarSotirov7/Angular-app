@@ -34,11 +34,11 @@ export class FirebaseService {
   // ---------------- Authentication ---------------- 
 
   login(formValues: IFormValues): Promise<any> {
-    return this.fireAuth.signInWithEmailAndPassword(formValues.email, formValues.password);
+    return this.fireAuth.signInWithEmailAndPassword(formValues.email.trim(), formValues.password.trim());
   }
 
   register(formValues: IFormValues): Promise<any> {
-    return this.fireAuth.createUserWithEmailAndPassword(formValues.email, formValues.password);
+    return this.fireAuth.createUserWithEmailAndPassword(formValues.email.trim(), formValues.password.trim());
   }
 
   logout(): Promise<any> {
@@ -54,8 +54,8 @@ export class FirebaseService {
       admin = true;
     }
     return this.firestore.collection(this.userColl).doc(doc).set({
-      firstName: userProperties.firstName,
-      lastName: userProperties.lastName,
+      firstName: userProperties.firstName.trim(),
+      lastName: userProperties.lastName.trim(),
       age: '',
       location: '',
       isAdmin: admin
@@ -67,19 +67,17 @@ export class FirebaseService {
   }
 
   setUserFirestore(doc: string, data: IUserProperties): void {
-    console.log('firebase.service -> doc: ', doc);
-    console.log('firebase.service -> data: ', data);
     if (data.firstName !== '') {
-      this.firestore.collection(this.userColl).doc(doc).update({ firstName: data?.firstName });
+      this.firestore.collection(this.userColl).doc(doc).update({ firstName: data?.firstName.trim() });
     }
     if (data.lastName !== '') {
-      this.firestore.collection(this.userColl).doc(doc).update({ lastName: data?.lastName });
+      this.firestore.collection(this.userColl).doc(doc).update({ lastName: data?.lastName.trim() });
     }
     if (data.age !== '') {
       this.firestore.collection(this.userColl).doc(doc).update({ age: data?.age });
     }
     if (data.location !== '') {
-      this.firestore.collection(this.userColl).doc(doc).update({ location: data?.location });
+      this.firestore.collection(this.userColl).doc(doc).update({ location: data?.location.trim() });
     }
   }
 

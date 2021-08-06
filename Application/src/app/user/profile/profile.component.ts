@@ -18,10 +18,10 @@ export class ProfileComponent {
     age: '',
     location: '',
   };
-  
+
   updatedMessage: boolean = false;
 
-  constructor(private userService: UserService, private route: Router) { 
+  constructor(private userService: UserService, private route: Router) {
 
     userService.authState.subscribe(u => {
       if (!u?.uid) {
@@ -31,7 +31,7 @@ export class ProfileComponent {
       //valid url link
       const slashIndex = this.route.url.lastIndexOf('/');
       const routeId = this.route.url.substring(slashIndex + 1);
-      if (routeId !== u.uid) {
+      if (routeId !== u?.uid) {
         route.navigateByUrl('');
       }
     });
@@ -52,10 +52,11 @@ export class ProfileComponent {
   }
 
   saveChanges(data: IUserProperties) {
+
     this.userService.setUserData(this.user.uid, data);
     //view purposes
-    this.user.firstName = data?.firstName !== '' ? data?.firstName : this.user.firstName;
-    this.user.lastName = data?.lastName !== '' ? data?.lastName : this.user.lastName;
+    this.user.firstName = data?.firstName !== '' ? data?.firstName.trim() : this.user.firstName;
+    this.user.lastName = data?.lastName !== '' ? data?.lastName.trim() : this.user.lastName;
 
     this.updatedMessage = true;
     setInterval(() => { this.updatedMessage = false }, 1000);

@@ -18,14 +18,21 @@ export class ProfileComponent {
     age: '',
     location: '',
   };
-
+  
   updatedMessage: boolean = false;
 
-  constructor(private userService: UserService, route: Router) { 
+  constructor(private userService: UserService, private route: Router) { 
 
     userService.authState.subscribe(u => {
       if (!u?.uid) {
         route.navigateByUrl('/login');
+      }
+
+      //valid url link
+      const slashIndex = this.route.url.lastIndexOf('/');
+      const routeId = this.route.url.substring(slashIndex + 1);
+      if (routeId !== u.uid) {
+        route.navigateByUrl('');
       }
     });
 
